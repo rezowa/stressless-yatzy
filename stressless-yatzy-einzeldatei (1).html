@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#1F3D32" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Stressless" />
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAFZ0lEQVR4nO3cPXIbRxSF0QFL+7BDxc6ds7QZr8WbUSlnzlihuRI7cEFFQcTvdPe8nntOyhKJ6nlf94Aa4rAU89uff/y79Wugr7eX18PWr+Fo0xdi2DnaKorhP9TQc83IGIb9IIPPvUaE0P0HGHzW6hlCt29s8GmtRwjNv6HBp7eWITy1+kbLYvgZo+WcNSnJ4LOVtafB6hPA8LOltfO3KgDDTwVr5vDhAAw/lTw6jw8FYPip6JG5vDsAw09l987nXQEYfmZwz5zeHIDhZya3zutNARh+ZnTL3F4NwPAzs2vz2/RRCJjNxQDs/uzBpTk+G4DhZ0/OzbNbIKJ9GIDdnz36aK6dAET7JQC7P3t2Ot9OAKL9FIDdnwTv59wJQLQfAdj9SXKcdycA0QRAtMOyuP0hlxOAaAIgmgCIJgCiHWZ+A/z967ezX/v85XngK9m/va71dAFcuhDnzHyBtpSw1lPdAj1yQdb8u2Qpaz3FCdByUWfboUZLW+vyJ0DrHWW2HWqkxLUuHUCvBZzhwoyWutalA4DeygbQe+eovjONlLzWJQMYtWCVL8wo6WtdMgAYRQBEKxfA6KOy6tE8grUuGACMJACiCYBoAiCaAIgmAKKVC2D0I7QzPLLbi7UuGACMJACilQxg1FFZ8UgeLX2tSwawLP0XrOoF2ULyWpcNAEYoHUCvnaPyjrSV1LUuHcCytF/A6hdkS4lrPcXHohyteZx2hotRScpalz8B3nt0YWe6IFWkrPVUJ8CpvX5eZUV7XeupA4C1proFgtYEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARBNAEQTANEEQDQBEE0ARPu09QtI8/fz7xe//te3f4a8Dv7nL8IGuTb4p4QwhgA6u3fwTwmhL+8BOlo7/K2+B+cJoJOWgyuCfgTQQY+BFUEfAmis56CKoD0BEE0ADY3YoZ0CbQmAaAJoZOTO7BRoRwBEEwDRBEA0ARBNAEQTANEEQDQBNDLyuX1/I9COAIgmgIZG7Mx2/7YEQDQBNNZzh7b7tyeADnoMquHvQwCdtBxYw9+PADpqMbiGvy+fCzSID8aqSQCD+WjEWgRANO8BiCYAogmAaAIgmgCIJgCiCYBoAiCaAIgmAKIJgGgCIJoAiCYAogmAaAIg2qetX8Aa379+O/u1z1+eB76S/dvrWk/3F2GXLsQ5M1+gLSWs9VS3QI9ckDX/LlnKWk9xArRc1Nl2qNHS1rr8CdB6R5lthxopca1LB9BrAWe4MKOlrnXpAKC3sgH03jmq70wjJa91yQBGLVjlCzNK+lqXDABGEQDRygUw+qisejSPYK0LBgAjCYBoAiCaAIgmAKIJgGjlAhj9CO0Mj+z2Yq0LBgAjCYBoJQMYdVRWPJJHS1/rkgEsS/8Fq3pBtpC81mUDgBFKB9Br56i8I20lda1LB7As7Rew+gXZUuJaT/GxKEdrHqed4WJUkrLW5U+A9x5d2JkuSBUpaz3VCXBqr59XWdFe13rqAGCtp7eX18PWLwK2MtV7AGhNAEQTANEEQLSnZVkWb4RJ9PbyenACEE0ARPsRgNsgkhzn3QlAtJ8CcAqQ4P2cOwGI9ksATgH27HS+nQBE+zAApwB79NFcOwGIdjYApwB7cm6eL54AImAPLs2xWyCiXQ3AKcDMrs3vTSeACJjRLXN78y2QCJjJrfN613sAETCDe+b07jfBIqCye+fzod8CiYCKHpnLh38NKgIqeXQeV/0/gAioYM0crv6PMBGwpbXz13R4fdAuo7TaeJs+CuE0YISWc9ZtYJ0GtNZjg+2+YwuBtXreWQy7ZREC9xpxSz38nl0IXDPyveSmb1rFwNFWv0D5D3/Y2ivF96STAAAAAElFTkSuQmCC" />
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAFZ0lEQVR4nO3cPXIbRxSF0QFL+7BDxc6ds7QZr8WbUSlnzlihuRI7cEFFQcTvdPe8nntOyhKJ6nlf94Aa4rAU89uff/y79Wugr7eX18PWr+Fo0xdi2DnaKorhP9TQc83IGIb9IIPPvUaE0P0HGHzW6hlCt29s8GmtRwjNv6HBp7eWITy1+kbLYvgZo+WcNSnJ4LOVtafB6hPA8LOltfO3KgDDTwVr5vDhAAw/lTw6jw8FYPip6JG5vDsAw09l987nXQEYfmZwz5zeHIDhZya3zutNARh+ZnTL3F4NwPAzs2vz2/RRCJjNxQDs/uzBpTk+G4DhZ0/OzbNbIKJ9GIDdnz36aK6dAET7JQC7P3t2Ot9OAKL9FIDdnwTv59wJQLQfAdj9SXKcdycA0QRAtMOyuP0hlxOAaAIgmgCIJgCiHWZ+A/z967ezX/v85XngK9m/va71dAFcuhDnzHyBtpSw1lPdAj1yQdb8u2Qpaz3FCdByUWfboUZLW+vyJ0DrHWW2HWqkxLUuHUCvBZzhwoyWutalA4DeygbQe+eovjONlLzWJQMYtWCVL8wo6WtdMgAYRQBEKxfA6KOy6tE8grUuGACMJACiCYBoAiCaAIgmAKKVC2D0I7QzPLLbi7UuGACMJACilQxg1FFZ8UgeLX2tSwawLP0XrOoF2ULyWpcNAEYoHUCvnaPyjrSV1LUuHcCytF/A6hdkS4lrPcXHohyteZx2hotRScpalz8B3nt0YWe6IFWkrPVUJ8CpvX5eZUV7XeupA4C1proFgtYEQDQBEE0ARBMA0QRANAEQTQBEEwDRBEA0ARBNAEQTANEEQDQBEE0ARPu09QtI8/fz7xe//te3f4a8Dv7nL8IGuTb4p4QwhgA6u3fwTwmhL+8BOlo7/K2+B+cJoJOWgyuCfgTQQY+BFUEfAmis56CKoD0BEE0ADY3YoZ0CbQmAaAJoZOTO7BRoRwBEEwDRBEA0ARBNAEQTANEEQDQBNDLyuX1/I9COAIgmgIZG7Mx2/7YEQDQBNNZzh7b7tyeADnoMquHvQwCdtBxYw9+PADpqMbiGvy+fCzSID8aqSQCD+WjEWgRANO8BiCYAogmAaAIgmgCIJgCiCYBoAiCaAIgmAKIJgGgCIJoAiCYAogmAaAIg2qetX8Aa379+O/u1z1+eB76S/dvrWk/3F2GXLsQ5M1+gLSWs9VS3QI9ckDX/LlnKWk9xArRc1Nl2qNHS1rr8CdB6R5lthxopca1LB9BrAWe4MKOlrnXpAKC3sgH03jmq70wjJa91yQBGLVjlCzNK+lqXDABGEQDRygUw+qisejSPYK0LBgAjCYBoAiCaAIgmAKIJgGjlAhj9CO0Mj+z2Yq0LBgAjCYBoJQMYdVRWPJJHS1/rkgEsS/8Fq3pBtpC81mUDgBFKB9Br56i8I20lda1LB7As7Rew+gXZUuJaT/GxKEdrHqed4WJUkrLW5U+A9x5d2JkuSBUpaz3VCXBqr59XWdFe13rqAGCtp7eX18PWLwK2MtV7AGhNAEQTANEEQLSnZVkWb4RJ9PbyenACEE0ARPsRgNsgkhzn3QlAtJ8CcAqQ4P2cOwGI9ksATgH27HS+nQBE+zAApwB79NFcOwGIdjYApwB7cm6eL54AImAPLs2xWyCiXQ3AKcDMrs3vTSeACJjRLXN78y2QCJjJrfN613sAETCDe+b07jfBIqCye+fzod8CiYCKHpnLh38NKgIqeXQeV/0/gAioYM0crv6PMBGwpbXz13R4fdAuo7TaeJs+CuE0YISWc9ZtYJ0GtNZjg+2+YwuBtXreWQy7ZREC9xpxSz38nl0IXDPyveSmb1rFwNFWv0D5D3/Y2ivF96STAAAAAElFTkSuQmCC" />
+<title>Stressless Yatzy</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
+
+/* ============================================================================
+   STRESSLESS YATZY — Designtoken-System
+   Farben:  Elfenbein #F7F3EA · Weiss #FFFFFF · Anthrazit #262A28
+            Waldgrün #1F3D32 (Primär) · Kupferbronze #B08552 (Akzent)
+   Rang:    1. Platz = Waldgrün-Hauch · 2. Platz = Bronze-Hauch ·
+            3./4. Platz = neutrales, abschwächendes Warmgrau — der Rangfarbe folgt
+            die Markenpalette, nicht vier beliebige Pastelltöne.
+   Typo:    Inter für UI, Fliesstext UND Zahlen (klar, tabellarisch, ruhig) ·
+            Fraunces nur für Headline-Momente (Titel, Sieger-Name).
+   Signatur: Realistische, ruhig animierte Würfel mit Bronze-Ring beim Halten.
+   ============================================================================ */
+
+:root {
+  --ivory:#F7F3EA; --white:#FFFFFF; --ink:#262A28; --ink-soft:#6E7168;
+  --green:#1F3D32; --green-soft:#EAF0EC; --bronze:#B08552; --bronze-soft:#F4EADC;
+  --line:#E8E2D3;
+  --rank1-soft: rgba(31,61,50,0.055);   --rank1-strong: rgba(31,61,50,0.14);
+  --rank2-soft: rgba(176,133,82,0.075); --rank2-strong: rgba(176,133,82,0.18);
+  --rank3-soft: rgba(38,42,40,0.04);    --rank3-strong: rgba(38,42,40,0.085);
+  --rank4-soft: rgba(38,42,40,0.018);   --rank4-strong: rgba(38,42,40,0.045);
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button { font-family: inherit; cursor: pointer; }
+input, select { font-family: inherit; }
+
+.app-root { min-height: 100vh; }
+.hidden { display: none !important; }
+.num { font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
+
+/* ---------- Setup ---------- */
+.setup {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 22px calc(24px + env(safe-area-inset-bottom));
+  max-width: 480px;
+  margin: 0 auto;
+}
+.setup__title {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 34px;
+  letter-spacing: -0.01em;
+  margin: 0 0 4px;
+}
+.setup__sub { color: var(--ink-soft); font-size: 15px; margin: 0 0 36px; }
+.setup__label { font-size: 13px; font-weight: 600; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 12px; }
+.segmented { display: flex; gap: 8px; margin-bottom: 32px; }
+.segmented button {
+  flex: 1; padding: 14px 0; border-radius: 14px; border: 1.5px solid var(--line);
+  background: var(--white); font-size: 20px; font-weight: 700;
+  color: var(--ink); transition: all .15s ease;
+}
+.segmented button.active { background: var(--green); border-color: var(--green); color: var(--white); }
+.name-list { display: flex; flex-direction: column; gap: 10px; }
+.name-row {
+  display: flex; align-items: center; gap: 12px; background: var(--white);
+  border-radius: 14px; padding: 4px 6px 4px 18px; border: 1.5px solid var(--line);
+}
+.name-row__dot { width: 10px; height: 10px; border-radius: 50%; background: var(--bronze); flex-shrink: 0; }
+.name-row input {
+  flex: 1; border: none; outline: none; background: transparent; font-size: 17px;
+  font-weight: 500; padding: 14px 4px; color: var(--ink); min-width: 0;
+}
+.btn-primary {
+  margin-top: 28px; width: 100%; padding: 18px; border: none; border-radius: 16px;
+  background: var(--green); color: var(--white); font-size: 17px; font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 8px 20px -8px rgba(31,61,50,0.5);
+}
+.btn-primary:active { transform: scale(0.98); }
+.setup__mode-note { text-align: center; color: var(--ink-soft); font-size: 13px; margin-top: 14px; line-height: 1.5; }
+
+.mode-choice { display: flex; gap: 10px; }
+.mode-card {
+  flex: 1; padding: 18px 12px; border-radius: 16px; border: 1.5px solid var(--line); background: var(--white);
+  display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--ink);
+}
+.mode-card svg { color: var(--ink-soft); }
+.mode-card__title { font-weight: 600; font-size: 14.5px; }
+.mode-card__sub { font-size: 12px; color: var(--ink-soft); text-align: center; line-height: 1.4; }
+.mode-card:active { transform: scale(0.97); }
+.mode-card.active { border-color: var(--green); background: var(--green-soft); }
+.mode-card.active svg { color: var(--green); }
+
+.link-btn {
+  margin: 22px auto 0; display: block; background: none; border: none; color: var(--ink-soft);
+  font-size: 13px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px;
+}
+.history-panel { margin-top: 16px; max-height: 220px; overflow-y: auto; }
+.history-empty { font-size: 13px; text-align: center; color: var(--ink-soft); margin: 8px 0; }
+.history-entry { border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; margin-bottom: 8px; background: var(--white); }
+.history-header { font-size: 12px; font-weight: 700; color: var(--ink-soft); margin-bottom: 6px; }
+.history-row { display: flex; justify-content: space-between; font-size: 14px; padding: 2px 0; }
+.history-row--first { font-weight: 700; color: var(--green); }
+.history-clear { display: block; margin: 10px auto 0; background: none; border: none; color: var(--ink-soft); font-size: 12px; text-decoration: underline; }
+
+/* ---------- Top bar ---------- */
+.topbar {
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(247,243,234,0.92); backdrop-filter: blur(10px);
+  padding: 14px 16px 10px; border-bottom: 1px solid var(--line);
+}
+.topbar__row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.topbar__player { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.topbar__avatar {
+  width: 34px; height: 34px; border-radius: 50%; background: var(--green); color: var(--white);
+  display: flex; align-items: center; justify-content: center; font-family:'Fraunces',serif; font-weight:600; font-size:15px; flex-shrink:0;
+}
+.topbar__name { font-weight: 600; font-size: 16px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.topbar__hint { font-size: 12px; color: var(--ink-soft); }
+.icon-btn {
+  width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid var(--line); background: var(--white);
+  display: flex; align-items: center; justify-content: center; color: var(--ink); flex-shrink: 0;
+}
+.icon-btn:disabled { opacity: 0.35; }
+.icon-btn:active:not(:disabled) { transform: scale(0.93); }
+.topbar__actions { display: flex; gap: 8px; flex-shrink: 0; }
+
+/* ---------- Dice zone ---------- */
+.dicezone { padding: 18px 16px 8px; max-width: 480px; margin: 0 auto; }
+.dice-row { display: flex; justify-content: center; gap: 10px; padding: 6px 0 16px; }
+.die {
+  width: 58px; height: 58px; border-radius: 14px; background: var(--white);
+  border: none; box-shadow: 0 3px 0 rgba(0,0,0,0.05), 0 10px 18px -10px rgba(38,42,40,0.35);
+  padding: 8px; transition: transform .15s ease, box-shadow .15s ease;
+}
+.die--held { box-shadow: 0 0 0 2.5px var(--bronze), 0 10px 18px -8px rgba(176,133,82,0.4); transform: translateY(-4px); }
+.die--locked { opacity: 0.55; }
+.die--rolling { animation: shake .38s ease; }
+@keyframes shake { 0%{transform:rotate(0)} 25%{transform:rotate(-9deg)} 50%{transform:rotate(7deg)} 75%{transform:rotate(-4deg)} 100%{transform:rotate(0)} }
+.die__grid { display: grid; grid-template-columns: repeat(3,1fr); grid-template-rows: repeat(3,1fr); width: 100%; height: 100%; }
+.die__pip { border-radius: 50%; margin: auto; width: 8px; height: 8px; background: transparent; }
+.die__pip--on { background: var(--ink); }
+
+.roll-area { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+.btn-roll {
+  padding: 15px 34px; border: none; border-radius: 999px; background: var(--green); color: var(--white);
+  font-size: 16px; font-weight: 600;
+  box-shadow: 0 8px 18px -8px rgba(31,61,50,0.5);
+}
+.btn-roll:disabled { background: #C9C4B4; box-shadow: none; }
+.btn-roll:active:not(:disabled) { transform: scale(0.97); }
+.rolls-left { font-size: 13px; color: var(--ink-soft); }
+.manual-hint { text-align: center; color: var(--ink-soft); font-size: 13.5px; padding: 10px 20px 14px; line-height: 1.5; }
+
+/* ---------- Scorecard ---------- */
+.scorecard-wrap { padding: 4px 12px calc(30px + env(safe-area-inset-bottom)); overflow-x: auto; max-width: 480px; margin: 0 auto; }
+.scorecard { width: 100%; border-collapse: separate; border-spacing: 0; }
+.scorecard th, .scorecard td { padding: 0; }
+.col-label {
+  width: 128px; min-width: 128px; text-align: left; font-size: 13.5px; color: var(--ink);
+  padding: 9px 8px 9px 4px !important; font-weight: 500;
+}
+.col-player { width: 78px; min-width: 78px; text-align: center; }
+.thead-name { padding: 8px 4px !important; text-align: center; border-radius: 12px 12px 0 0; }
+.thead-name.current { box-shadow: inset 0 -2px 0 var(--green); }
+.thead-name__label { font-size: 12.5px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: block; max-width: 74px; margin: 0 auto; }
+.thead-name__total { display: inline-block; margin-top: 4px; font-size: 15px; font-weight: 700; }
+.thead-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--bronze); margin-right: 5px; vertical-align: 1px; }
+
+.cat-row td { border-bottom: 1px solid var(--line); }
+.cat-row:last-child td { border-bottom: none; }
+.cat-row--section-start td { border-top: 1.5px solid var(--line); padding-top: 15px !important; }
+.cell { text-align: center; padding: 9px 2px !important; }
+.cell-empty { color: #C7C2B4; font-size: 15px; }
+.cell-potential {
+  background: none; border: none; font-weight: 700; font-size: 16px;
+  color: var(--bronze); padding: 6px 8px; border-radius: 10px;
+}
+.cell-potential:active { background: var(--bronze-soft); }
+.cell-potential--zero { color: #B7A98F; }
+.cell-filled { background: none; border: none; font-size: 15.5px; font-weight: 600; color: var(--ink); padding: 6px 8px; border-radius: 10px; }
+.cell-filled:active { background: var(--line); }
+.cell-manual-btn {
+  background: none; border: none; color: var(--bronze); font-size: 12.5px; font-weight: 700; padding: 7px 6px; border-radius: 10px; width: 100%;
+}
+.cell-manual-btn:active { background: var(--bronze-soft); }
+
+.bonus-row td { padding: 3px 2px !important; }
+.bonus-row--total td { padding-bottom: 8px !important; }
+.bonus-label { font-size: 11.5px; color: var(--ink-soft); }
+.bonus-value { font-size: 12.5px; font-weight: 600; }
+.bonus-badge {
+  display: inline-block; margin-left: 4px; font-size: 10px; font-weight: 700;
+  color: var(--bronze); background: var(--bronze-soft); padding: 1px 5px; border-radius: 6px; vertical-align: 1px;
+}
+
+.total-cell { border-radius: 8px; padding: 2px 9px; }
+.rank-1, .rank-2, .rank-3, .rank-4 { transition: background .2s ease; }
+.rank-1 { background: var(--rank1-soft); }
+.rank-2 { background: var(--rank2-soft); }
+.rank-3 { background: var(--rank3-soft); }
+.rank-4 { background: var(--rank4-soft); }
+.rank-1 .total-cell { background: var(--rank1-strong); }
+.rank-2 .total-cell { background: var(--rank2-strong); }
+.rank-3 .total-cell { background: var(--rank3-strong); }
+.rank-4 .total-cell { background: var(--rank4-strong); }
+
+/* ---------- Modal ---------- */
+.modal-backdrop {
+  position: fixed; inset: 0; background: rgba(38,42,40,0.42); backdrop-filter: blur(2px);
+  display: flex; align-items: flex-end; justify-content: center; z-index: 50;
+}
+.modal-sheet {
+  width: 100%; max-width: 440px; background: var(--white); border-radius: 22px 22px 0 0;
+  padding: 24px 22px calc(24px + env(safe-area-inset-bottom));
+  animation: sheetUp .22s ease;
+}
+@keyframes sheetUp { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.modal-title { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; margin: 0 0 6px; }
+.modal-text { color: var(--ink-soft); font-size: 14.5px; margin: 0 0 20px; line-height: 1.5; }
+.modal-btn-row { display: flex; gap: 10px; }
+.modal-btn {
+  flex: 1; padding: 15px; border-radius: 14px; border: 1.5px solid var(--line); background: var(--white);
+  font-weight: 600; font-size: 15px; color: var(--ink);
+}
+.modal-btn--primary { background: var(--green); border-color: var(--green); color: var(--white); }
+.modal-btn--danger { background: #FBEDEA; border-color: #F2D6CE; color: #9C4B36; }
+.modal-btn:active { transform: scale(0.97); }
+
+.stepper { display: flex; align-items: center; justify-content: center; gap: 22px; margin: 6px 0 22px; }
+.stepper button {
+  width: 46px; height: 46px; border-radius: 50%; border: 1.5px solid var(--line); background: var(--white);
+  display: flex; align-items: center; justify-content: center; color: var(--ink);
+}
+.stepper button:active { transform: scale(0.93); }
+.stepper__value { font-size: 40px; font-weight: 700; min-width: 74px; text-align: center; }
+.chip-row { display: flex; gap: 10px; margin-bottom: 22px; }
+.chip {
+  flex: 1; padding: 16px 0; border-radius: 14px; border: 1.5px solid var(--line); background: var(--white);
+  font-size: 19px; font-weight: 700; color: var(--ink);
+}
+.chip--active { background: var(--green); border-color: var(--green); color: var(--white); }
+.modal-link-danger {
+  display: block; width: 100%; text-align: center; margin-top: 16px; background: none; border: none;
+  color: #9C4B36; font-size: 13px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px;
+}
+
+/* ---------- Winner ---------- */
+.winner-overlay {
+  position: fixed; inset: 0; background: var(--ivory); z-index: 60; display: flex; flex-direction: column;
+  align-items: center; padding: 60px 24px 40px; animation: fadeIn .3s ease; overflow-y: auto;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.winner-trophy { color: var(--bronze); margin-bottom: 18px; animation: floatIn .5s ease; }
+@keyframes floatIn { from { transform: translateY(-10px) scale(0.9); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
+.winner-title { font-family: 'Fraunces', serif; font-size: 15px; color: var(--ink-soft); margin: 0; text-transform: uppercase; letter-spacing: 0.08em; }
+.winner-name { font-family: 'Fraunces', serif; font-size: 34px; font-weight: 700; margin: 4px 0 2px; text-align: center; }
+.winner-score { font-size: 17px; font-weight: 600; color: var(--bronze); margin: 0 0 36px; }
+.standings { width: 100%; max-width: 380px; display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
+.standing-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; border-radius: 14px; background: var(--white); }
+.standing-row__left { display: flex; align-items: center; gap: 12px; }
+.standing-rank { font-weight: 700; color: var(--ink-soft); width: 18px; }
+.standing-name { font-weight: 600; font-size: 15px; }
+.standing-total { font-weight: 700; font-size: 17px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .die--rolling, .winner-overlay, .winner-trophy, .modal-sheet { animation: none !important; }
+}
+
+</style>
+</head>
+<body>
+<div id="app" class="app-root"></div>
+<script>
+"use strict";
+
+/* ============================================================================
+   STRESSLESS YATZY — script.js
+   Reines JS, kein Framework, komplette Offline-Funktion via localStorage.
+   Ein zentraler render()-Aufruf baut die Ansicht je nach state.phase neu auf;
+   Events laufen per Delegation über #app (data-action Attribute).
+   ============================================================================ */
+
+/* ---------------- Konstanten & Regel-Engine ---------------- */
+
+const STORAGE_KEY_STATE = "stressless_yatzy_state_v3";
+const STORAGE_KEY_HISTORY = "stressless_yatzy_history_v2";
+const MAX_PLAYERS = 4;
+
+const UPPER = [
+  { key: "ones", label: "Einser", n: 1 },
+  { key: "twos", label: "Zweier", n: 2 },
+  { key: "threes", label: "Dreier", n: 3 },
+  { key: "fours", label: "Vierer", n: 4 },
+  { key: "fives", label: "Fünfer", n: 5 },
+  { key: "sixes", label: "Sechser", n: 6 },
+];
+
+const LOWER = [
+  { key: "onePair", label: "1 Paar" },
+  { key: "twoPair", label: "2 Paar" },
+  { key: "threeKind", label: "3 Gleiche" },
+  { key: "fourKind", label: "4 Gleiche" },
+  { key: "fullHouse", label: "Full House", fixed: 30 },
+  { key: "smallStraight", label: "Kleine Straße", fixed: 25 },
+  { key: "largeStraight", label: "Große Straße", fixed: 35 },
+  { key: "chance", label: "Chance" },
+  { key: "yatzy", label: "Yatzy", fixed: 50 },
+];
+
+const ALL_CATS = [...UPPER, ...LOWER];
+const RANK_CLASSES = ["rank-1", "rank-2", "rank-3", "rank-4"];
+
+function diceCounts(dice) {
+  const c = [0, 0, 0, 0, 0, 0, 0];
+  dice.forEach((v) => c[v]++);
+  return c;
+}
+
+function computeScore(key, dice) {
+  const c = diceCounts(dice);
+  const sum = dice.reduce((a, b) => a + b, 0);
+
+  switch (key) {
+    case "ones": return c[1] * 1;
+    case "twos": return c[2] * 2;
+    case "threes": return c[3] * 3;
+    case "fours": return c[4] * 4;
+    case "fives": return c[5] * 5;
+    case "sixes": return c[6] * 6;
+    case "onePair": {
+      let best = 0;
+      for (let v = 6; v >= 1; v--) if (c[v] >= 2) { best = v * 2; break; }
+      return best;
+    }
+    case "twoPair": {
+      const units = [];
+      for (let v = 6; v >= 1; v--) for (let i = 0; i < Math.floor(c[v] / 2); i++) units.push(v);
+      if (units.length < 2) return 0;
+      return (units[0] + units[1]) * 2;
+    }
+    case "threeKind": {
+      for (let v = 6; v >= 1; v--) if (c[v] >= 3) return v * 3;
+      return 0;
+    }
+    case "fourKind": {
+      for (let v = 6; v >= 1; v--) if (c[v] >= 4) return v * 4;
+      return 0;
+    }
+    case "fullHouse":
+      return c.includes(3) && c.includes(2) ? 30 : 0;
+    case "smallStraight": {
+      const distinct = new Set(dice);
+      const windows = [[1, 2, 3, 4], [2, 3, 4, 5], [3, 4, 5, 6]];
+      return windows.some((w) => w.every((v) => distinct.has(v))) ? 25 : 0;
+    }
+    case "largeStraight": {
+      const distinct = new Set(dice);
+      const windows = [[1, 2, 3, 4, 5], [2, 3, 4, 5, 6]];
+      return windows.some((w) => w.every((v) => distinct.has(v))) ? 35 : 0;
+    }
+    case "chance": return sum;
+    case "yatzy": return c.includes(5) ? 50 : 0;
+    default: return 0;
+  }
+}
+
+function upperSum(scores) { return UPPER.reduce((a, c) => a + (scores[c.key] ?? 0), 0); }
+function bonusOf(scores) {
+  const allUpperFilled = UPPER.every((c) => scores[c.key] != null);
+  const s = upperSum(scores);
+  return s >= 63 ? 25 : allUpperFilled ? 0 : null;
+}
+function lowerSum(scores) { return LOWER.reduce((a, c) => a + (scores[c.key] ?? 0), 0); }
+function totalOf(scores) { const b = bonusOf(scores); return upperSum(scores) + (b ?? 0) + lowerSum(scores); }
+function isComplete(scores) { return ALL_CATS.every((c) => scores[c.key] != null); }
+function emptyScores() { const s = {}; ALL_CATS.forEach((c) => (s[c.key] = null)); return s; }
+function rollDie() { return 1 + Math.floor(Math.random() * 6); }
+
+function computeRanking(players) {
+  if (players.length === 0) return [];
+  const totals = players.map((p) => totalOf(p.scores));
+  const uniqueDesc = [...new Set(totals)].sort((a, b) => b - a);
+  return totals.map((t) => uniqueDesc.indexOf(t));
+}
+
+/* ---------------- Icons (inline SVG, funktioniert offline) ---------------- */
+
+const ICON = {
+  dice: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="8" cy="16" r="1.3" fill="currentColor" stroke="none"/><circle cx="16" cy="16" r="1.3" fill="currentColor" stroke="none"/></svg>`,
+  pen: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>`,
+  undo: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h10a5 5 0 0 1 0 10H8"/><path d="M8 5 3 10l5 5"/></svg>`,
+  restart: `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>`,
+  trophy: `<svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0Z"/><path d="M7 5H4a3 3 0 0 0 3 5"/><path d="M17 5h3a3 3 0 0 1-3 5"/></svg>`,
+  plus: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>`,
+  minus: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg>`,
+  check: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>`,
+  x: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>`,
+};
+
+const PIP_PATTERNS = { 1: [4], 2: [0, 8], 3: [0, 4, 8], 4: [0, 2, 6, 8], 5: [0, 2, 4, 6, 8], 6: [0, 2, 3, 5, 6, 8] };
+
+/* ---------------- Zustand ---------------- */
+
+let state = {
+  phase: "setup", // setup | playing | finished
+  playerCount: 2,
+  names: ["Spieler 1", "Spieler 2", "Spieler 3", "Spieler 4"],
+  diceMode: "digital", // digital | physical — gilt für die ganze Partie
+  players: [],
+  currentIdx: 0,
+  dice: [1, 1, 1, 1, 1],
+  held: [false, false, false, false, false],
+  rollsLeft: 3,
+};
+
+let rolling = false;
+let history = []; // Undo-Stack (Snapshots)
+let zeroConfirm = null;   // { key, value, editCommit? }
+let manualPicker = null;  // { key, editIdx? }
+let manualValue = 0;
+let abortConfirm = false;
+let historyOpen = false;
+
+/* ---------------- Persistenz ---------------- */
+
+function saveState() {
+  try { localStorage.setItem(STORAGE_KEY_STATE, JSON.stringify(state)); } catch (e) {}
+}
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY_STATE);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    if (data && typeof data === "object") state = Object.assign(state, data);
+  } catch (e) {}
+}
+
+// Macht aus irgendeinem (auch alten/unvollständigen) gespeicherten Objekt
+// garantiert einen gültigen Spieler — jede fehlende Kategorie wird ergänzt,
+// damit spätere Berechnungen nie auf undefined treffen.
+function sanitizePlayer(p, idx) {
+  const name = (p && p.name && String(p.name).trim()) || `Spieler ${idx + 1}`;
+  const scores = emptyScores();
+  if (p && p.scores && typeof p.scores === "object") {
+    ALL_CATS.forEach((c) => {
+      const v = p.scores[c.key];
+      scores[c.key] = v === null || v === undefined ? null : Number(v);
+    });
+  }
+  return { name, scores };
+}
+
+// Prüft den kompletten geladenen Zustand auf Konsistenz (falsche Typen, alte
+// Datenformate, ein currentIdx ausserhalb der Spielerliste etc.) und repariert
+// alles Notwendige. So kann ein alter/fremder localStorage-Eintrag nie mehr
+// zu einem Absturz beim Aufbau der Seite führen.
+function sanitizeState() {
+  if (!Array.isArray(state.players)) state.players = [];
+  state.players = state.players.map((p, i) => sanitizePlayer(p, i));
+
+  if (!Array.isArray(state.dice) || state.dice.length !== 5) state.dice = [1, 1, 1, 1, 1];
+  if (!Array.isArray(state.held) || state.held.length !== 5) state.held = [false, false, false, false, false];
+  if (typeof state.rollsLeft !== "number") state.rollsLeft = 3;
+  if (typeof state.currentIdx !== "number" || state.currentIdx < 0 || state.currentIdx >= state.players.length) {
+    state.currentIdx = 0;
+  }
+  if (state.diceMode !== "digital" && state.diceMode !== "physical") state.diceMode = "digital";
+  if (typeof state.playerCount !== "number" || state.playerCount < 1 || state.playerCount > MAX_PLAYERS) {
+    state.playerCount = 2;
+  }
+  if (!Array.isArray(state.names) || state.names.length < MAX_PLAYERS) {
+    const old = Array.isArray(state.names) ? state.names : [];
+    state.names = Array.from({ length: MAX_PLAYERS }, (_, i) => old[i] || `Spieler ${i + 1}`);
+  }
+  if ((state.phase === "playing" || state.phase === "finished") && state.players.length === 0) {
+    state.phase = "setup";
+  }
+  if (state.phase !== "setup" && state.phase !== "playing" && state.phase !== "finished") {
+    state.phase = "setup";
+  }
+}
+
+function loadGameHistory() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY_HISTORY);
+    const d = raw ? JSON.parse(raw) : [];
+    return Array.isArray(d) ? d : [];
+  } catch (e) { return []; }
+}
+function saveGameHistory(h) {
+  try { localStorage.setItem(STORAGE_KEY_HISTORY, JSON.stringify(h)); } catch (e) {}
+}
+function addHistoryEntry() {
+  const now = new Date();
+  const entry = {
+    dateLabel: now.toLocaleDateString("de-CH", { day: "2-digit", month: "2-digit", year: "2-digit" }) +
+      " · " + now.toLocaleTimeString("de-CH", { hour: "2-digit", minute: "2-digit" }),
+    standings: state.players
+      .map((p) => ({ name: p.name, total: totalOf(p.scores) }))
+      .sort((a, b) => b.total - a.total),
+  };
+  const h = loadGameHistory();
+  h.unshift(entry);
+  saveGameHistory(h.slice(0, 25));
+}
+
+/* ---------------- Spielsteuerung ---------------- */
+
+function setPlayerCount(n) { state.playerCount = n; saveState(); render(); }
+function setDiceMode(mode) { state.diceMode = mode; saveState(); render(); }
+
+function startGame() {
+  const ps = Array.from({ length: state.playerCount }).map((_, i) => ({
+    name: (state.names[i] && state.names[i].trim()) || `Spieler ${i + 1}`,
+    scores: emptyScores(),
+  }));
+  state.players = ps;
+  state.currentIdx = 0;
+  state.dice = [1, 1, 1, 1, 1];
+  state.held = [false, false, false, false, false];
+  state.rollsLeft = 3;
+  state.phase = "playing";
+  history = [];
+  saveState();
+  render();
+}
+
+function newGame() {
+  state.phase = "setup";
+  state.players = [];
+  state.currentIdx = 0;
+  state.dice = [1, 1, 1, 1, 1];
+  state.held = [false, false, false, false, false];
+  state.rollsLeft = 3;
+  history = [];
+  zeroConfirm = null;
+  manualPicker = null;
+  abortConfirm = false;
+  saveState();
+  render();
+}
+
+function requestAbort() { abortConfirm = true; render(); }
+function resolveAbort(confirmed) {
+  abortConfirm = false;
+  if (confirmed) newGame();
+  else render();
+}
+
+function snapshot() {
+  return JSON.parse(JSON.stringify({
+    players: state.players, currentIdx: state.currentIdx,
+    dice: state.dice, held: state.held, rollsLeft: state.rollsLeft,
+  }));
+}
+function pushHistory() { history.push(snapshot()); }
+function undo() {
+  if (history.length === 0) return;
+  const prev = history.pop();
+  state.players = prev.players;
+  state.currentIdx = prev.currentIdx;
+  state.dice = prev.dice;
+  state.held = prev.held;
+  state.rollsLeft = prev.rollsLeft;
+  saveState();
+  render();
+}
+
+function doRoll() {
+  if (state.rollsLeft <= 0 || rolling) return;
+  rolling = true;
+  render();
+  setTimeout(() => {
+    state.dice = state.dice.map((v, i) => (state.held[i] ? v : rollDie()));
+    state.rollsLeft -= 1;
+    rolling = false;
+    saveState();
+    render();
+  }, 380);
+}
+
+function toggleHold(i) {
+  if (state.rollsLeft === 3 || rolling) return;
+  state.held[i] = !state.held[i];
+  render();
+}
+
+function advanceTurn() {
+  const next = (state.currentIdx + 1) % state.players.length;
+  state.currentIdx = next;
+  state.dice = [1, 1, 1, 1, 1];
+  state.held = [false, false, false, false, false];
+  state.rollsLeft = 3;
+  manualPicker = null;
+  manualValue = 0;
+
+  if (state.players.length > 0 && state.players.every((p) => isComplete(p.scores))) {
+    addHistoryEntry();
+    state.phase = "finished";
+  }
+}
+
+function commitScore(key, value) {
+  pushHistory();
+  state.players[state.currentIdx].scores[key] = value;
+  advanceTurn();
+  saveState();
+  render();
+}
+
+function requestCommit(key, value) {
+  if (value === 0) {
+    zeroConfirm = { key, value };
+    render();
+  } else {
+    commitScore(key, value);
+  }
+}
+
+function resolveZero(confirmed) {
+  const zc = zeroConfirm;
+  zeroConfirm = null;
+  if (!confirmed || !zc) { render(); return; }
+  if (zc.editCommit) zc.editCommit();
+  else commitScore(zc.key, zc.value);
+}
+
+function openManualPicker(key) { manualPicker = { key }; manualValue = 0; render(); }
+
+function onManualConfirm() {
+  if (!manualPicker) return;
+  if (manualPicker.editIdx != null) confirmManualEdit();
+  else confirmManual();
+}
+function confirmManual() {
+  const { key } = manualPicker;
+  manualPicker = null;
+  requestCommit(key, manualValue);
+}
+function confirmManualEdit() {
+  const { key, editIdx } = manualPicker;
+  const value = manualValue;
+  const commit = () => {
+    pushHistory();
+    state.players[editIdx].scores[key] = value;
+    manualPicker = null;
+    saveState();
+    render();
+  };
+  manualPicker = null;
+  if (value === 0) { zeroConfirm = { key, value, editCommit: commit }; render(); }
+  else commit();
+}
+function manualFixedPick(v) { manualValue = v; onManualConfirm(); }
+function manualInc(step, max) { manualValue = Math.min(max, manualValue + step); render(); }
+function manualDec(step) { manualValue = Math.max(0, manualValue - step); render(); }
+
+function openEdit(playerIdx, key) {
+  const current = state.players[playerIdx].scores[key];
+  manualPicker = { key, editIdx: playerIdx };
+  manualValue = current ?? 0;
+  render();
+}
+function deleteEntry() {
+  if (!manualPicker || manualPicker.editIdx == null) return;
+  pushHistory();
+  state.players[manualPicker.editIdx].scores[manualPicker.key] = null;
+  manualPicker = null;
+  saveState();
+  render();
+}
+
+function toggleHistoryPanel() { historyOpen = !historyOpen; render(); }
+function clearGameHistory() {
+  if (!confirm("Alle gespeicherten Spiele wirklich löschen?")) return;
+  saveGameHistory([]);
+  render();
+}
+
+/* ---------------- Hilfsfunktionen ---------------- */
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, (s) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[s]));
+}
+
+/* ---------------- Rendering ---------------- */
+
+function render() {
+  const app = document.getElementById("app");
+  const prevScrollWrap = app.querySelector(".scorecard-wrap");
+  const savedScroll = prevScrollWrap ? prevScrollWrap.scrollTop : 0;
+
+  let html = "";
+  try {
+    if (state.phase === "setup") html = renderSetup();
+    else if (state.phase === "playing") html = renderGame();
+    else if (state.phase === "finished") html = renderWinner();
+    html += renderModals();
+  } catch (err) {
+    html = renderCrashRecovery(err);
+  }
+
+  app.innerHTML = html;
+
+  const newScrollWrap = app.querySelector(".scorecard-wrap");
+  if (newScrollWrap) newScrollWrap.scrollTop = savedScroll;
+}
+
+// Letztes Sicherheitsnetz: sollte trotz sanitizeState() irgendwo ein
+// unerwarteter Fehler auftreten, zeigt die App einen ruhigen, verständlichen
+// Neustart-Bildschirm statt einer leeren Seite. Der Spielverlauf bleibt erhalten.
+function renderCrashRecovery(err) {
+  try { console.error("Stressless Yatzy – Renderfehler:", err); } catch (e) {}
+  return `
+    <section class="setup">
+      <h1 class="setup__title">Kurz gestolpert</h1>
+      <p class="setup__sub">Der letzte Spielstand hat der App Mühe bereitet. Ein Tap, und wir starten sauber neu — dein Verlauf früherer Spiele bleibt erhalten.</p>
+      <button class="btn-primary" data-action="hard-reset">Neu starten</button>
+    </section>
+  `;
+}
+
+function renderSetup() {
+  const nameRows = Array.from({ length: state.playerCount }).map((_, i) => `
+    <div class="name-row">
+      <span class="name-row__dot"></span>
+      <input type="text" value="${escapeHtml(state.names[i] || "")}" placeholder="Spieler ${i + 1}" data-pname="${i}" maxlength="18">
+    </div>
+  `).join("");
+
+  const modeNote = state.diceMode === "digital"
+    ? "Die App übernimmt Würfeln, Halten und die Punkteberechnung."
+    : "Ihr würfelt mit echten Würfeln — die App zeigt kein Würfelfeld, du trägst nur den erzielten Punktewert ein.";
+
+  const h = loadGameHistory();
+  const historyToggleLabel = historyOpen ? "Frühere Spiele ausblenden" : "Frühere Spiele";
+
+  return `
+    <section class="setup">
+      <h1 class="setup__title">Stressless Yatzy</h1>
+      <p class="setup__sub">Ruhig. Klar. Kein Stress. Bereit in unter einer Minute.</p>
+
+      <p class="setup__label">Anzahl Spieler</p>
+      <div class="segmented">
+        ${[1, 2, 3, 4].map((n) => `<button data-action="set-player-count" data-n="${n}" class="${state.playerCount === n ? "active" : ""}">${n}</button>`).join("")}
+      </div>
+
+      <p class="setup__label">Namen</p>
+      <div class="name-list">${nameRows}</div>
+
+      <p class="setup__label" style="margin-top:28px">Würfel</p>
+      <div class="mode-choice">
+        <button class="mode-card ${state.diceMode === "digital" ? "active" : ""}" data-action="set-dice-mode" data-mode="digital">
+          ${ICON.dice}
+          <span class="mode-card__title">Digitale Würfel</span>
+          <span class="mode-card__sub">Die App würfelt für dich</span>
+        </button>
+        <button class="mode-card ${state.diceMode === "physical" ? "active" : ""}" data-action="set-dice-mode" data-mode="physical">
+          ${ICON.pen}
+          <span class="mode-card__title">Eigene Würfel</span>
+          <span class="mode-card__sub">Nur Punkte eintragen</span>
+        </button>
+      </div>
+
+      <button class="btn-primary" data-action="start-game">Spiel starten</button>
+      <p class="setup__mode-note">${modeNote}</p>
+
+      <button class="link-btn" data-action="toggle-history">${historyToggleLabel}</button>
+      ${historyOpen ? renderHistoryPanel(h) : ""}
+    </section>
+  `;
+}
+
+function renderHistoryPanel(h) {
+  if (h.length === 0) return `<div class="history-panel"><p class="history-empty">Noch keine Spiele gespeichert.</p></div>`;
+  const entries = h.map((entry) => {
+    const rows = entry.standings.map((s, idx) => `
+      <div class="history-row ${idx === 0 ? "history-row--first" : ""}"><span>${idx + 1}. ${escapeHtml(s.name)}</span><span class="num">${s.total}</span></div>
+    `).join("");
+    return `<div class="history-entry"><div class="history-header">${entry.dateLabel}</div>${rows}</div>`;
+  }).join("");
+  return `<div class="history-panel">${entries}<button class="history-clear" data-action="clear-history">Verlauf löschen</button></div>`;
+}
+
+function renderDie(value, held, canHold, i) {
+  const pips = PIP_PATTERNS[value] || [];
+  const pipsHtml = Array.from({ length: 9 }).map((_, idx) => `<span class="die__pip ${pips.includes(idx) ? "die__pip--on" : ""}"></span>`).join("");
+  const classes = ["die"];
+  if (held) classes.push("die--held");
+  if (rolling) classes.push("die--rolling");
+  if (!canHold) classes.push("die--locked");
+  const attrs = canHold ? `data-action="hold-die" data-i="${i}"` : "";
+  return `<button type="button" class="${classes.join(" ")}" ${attrs} aria-label="Würfel zeigt ${value}${held ? ", gehalten" : ""}"><span class="die__grid">${pipsHtml}</span></button>`;
+}
+
+function renderCategoryRow(cat, players, ranking, currentIdx, sectionStart) {
+  const cells = players.map((p, i) => {
+    const filled = p.scores[cat.key] != null;
+    const isCurrent = i === currentIdx;
+    const rankClass = RANK_CLASSES[ranking[i]];
+
+    if (filled) {
+      return `<td class="cell ${rankClass}"><button class="cell-filled num" data-action="open-edit" data-player="${i}" data-key="${cat.key}">${p.scores[cat.key]}</button></td>`;
+    }
+    if (isCurrent && state.diceMode === "digital" && state.rollsLeft < 3) {
+      const val = computeScore(cat.key, state.dice);
+      return `<td class="cell ${rankClass}"><button class="cell-potential num ${val === 0 ? "cell-potential--zero" : ""}" data-action="commit" data-key="${cat.key}" data-value="${val}">${val}</button></td>`;
+    }
+    if (isCurrent && state.diceMode === "physical") {
+      return `<td class="cell ${rankClass}"><button class="cell-manual-btn" data-action="open-manual" data-key="${cat.key}">eintragen</button></td>`;
+    }
+    return `<td class="cell ${rankClass}"><span class="cell-empty">–</span></td>`;
+  }).join("");
+
+  return `<tr class="cat-row ${sectionStart ? "cat-row--section-start" : ""}"><td class="col-label">${cat.label}</td>${cells}</tr>`;
+}
+
+function renderGame() {
+  const players = state.players;
+  const ranking = computeRanking(players);
+  const current = players[state.currentIdx];
+
+  const headerCells = players.map((p, i) => `
+    <th class="col-player ${RANK_CLASSES[ranking[i]]}">
+      <div class="thead-name ${i === state.currentIdx ? "current" : ""}">
+        <span class="thead-name__label">${i === state.currentIdx ? '<span class="thead-dot"></span>' : ""}${escapeHtml(p.name)}</span>
+        <span class="thead-name__total num total-cell">${totalOf(p.scores)}</span>
+      </div>
+    </th>
+  `).join("");
+
+  const upperRows = UPPER.map((cat) => renderCategoryRow(cat, players, ranking, state.currentIdx, false)).join("");
+  const lowerRows = LOWER.map((cat, idx) => renderCategoryRow(cat, players, ranking, state.currentIdx, idx === 0)).join("");
+
+  const bonusSumCells = players.map((p, i) => {
+    const b = bonusOf(p.scores);
+    return `<td class="cell bonus-value ${RANK_CLASSES[ranking[i]]}">${upperSum(p.scores)}${b ? `<span class="bonus-badge">+${b}</span>` : ""}</td>`;
+  }).join("");
+  const bonusTotalCells = players.map((p, i) => {
+    const b = bonusOf(p.scores);
+    return `<td class="cell bonus-value ${RANK_CLASSES[ranking[i]]}" style="font-weight:700">${upperSum(p.scores) + (b ?? 0)}</td>`;
+  }).join("");
+
+  let diceZoneHtml;
+  if (state.diceMode === "digital") {
+    const diceHtml = state.dice.map((v, i) => renderDie(v, state.held[i], state.rollsLeft < 3, i)).join("");
+    const rollControls = state.rollsLeft > 0
+      ? `<div class="roll-area">
+           <button class="btn-roll" data-action="roll" ${rolling ? "disabled" : ""}>Würfeln</button>
+           <span class="rolls-left">${state.rollsLeft} von 3 Würfen übrig</span>
+         </div>`
+      : `<p class="manual-hint">Wähle unten eine Kategorie für diesen Wurf.</p>`;
+    diceZoneHtml = `<div class="dice-row">${diceHtml}</div>${rollControls}`;
+  } else {
+    diceZoneHtml = `<p class="manual-hint">Tippe unten auf eine freie Kategorie, um den erzielten Punktewert einzutragen.</p>`;
+  }
+
+  return `
+    <section>
+      <div class="topbar">
+        <div class="topbar__row">
+          <div class="topbar__player">
+            <span class="topbar__avatar">${(current.name.trim().charAt(0) || "?").toUpperCase()}</span>
+            <div style="min-width:0">
+              <div class="topbar__name">${escapeHtml(current.name)}</div>
+              <div class="topbar__hint">ist am Zug</div>
+            </div>
+          </div>
+          <div class="topbar__actions">
+            <button class="icon-btn" data-action="abort-game" aria-label="Neues Spiel">${ICON.restart}</button>
+            <button class="icon-btn" data-action="undo" ${history.length === 0 ? "disabled" : ""} aria-label="Rückgängig">${ICON.undo}</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="dicezone">${diceZoneHtml}</div>
+
+      <div class="scorecard-wrap">
+        <table class="scorecard">
+          <thead><tr><th class="col-label"></th>${headerCells}</tr></thead>
+          <tbody>
+            ${upperRows}
+            <tr class="bonus-row"><td class="col-label bonus-label">Summe / Bonus</td>${bonusSumCells}</tr>
+            <tr class="bonus-row bonus-row--total"><td class="col-label bonus-label" style="font-weight:700">Total oben</td>${bonusTotalCells}</tr>
+            ${lowerRows}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  `;
+}
+
+function renderWinner() {
+  const ranking = computeRanking(state.players);
+  const sorted = state.players
+    .map((p, i) => ({ name: p.name, total: totalOf(p.scores), rank: ranking[i] }))
+    .sort((a, b) => a.rank - b.rank);
+  const winner = sorted[0];
+
+  const rows = sorted.map((p, idx) => `
+    <div class="standing-row ${RANK_CLASSES[p.rank]}">
+      <div class="standing-row__left"><span class="standing-rank">${p.rank + 1}.</span><span class="standing-name">${escapeHtml(p.name)}</span></div>
+      <span class="standing-total num">${p.total}</span>
+    </div>
+  `).join("");
+
+  return `
+    <section class="winner-overlay">
+      <div class="winner-trophy">${ICON.trophy}</div>
+      <p class="winner-title">Sieger</p>
+      <h2 class="winner-name">${escapeHtml(winner.name)}</h2>
+      <p class="winner-score num">${winner.total} Punkte</p>
+      <div class="standings">${rows}</div>
+      <button class="btn-primary" style="max-width:380px;margin-top:0" data-action="new-game">Neues Spiel</button>
+    </section>
+  `;
+}
+
+function renderModals() {
+  let html = "";
+
+  if (zeroConfirm) {
+    html += `
+      <div class="modal-backdrop" data-action="zero-cancel">
+        <div class="modal-sheet" data-action="noop">
+          <h3 class="modal-title">Feld mit 0 belegen?</h3>
+          <p class="modal-text">Möchtest du dieses Feld wirklich mit 0 Punkten belegen? Das kann später jederzeit rückgängig gemacht werden.</p>
+          <div class="modal-btn-row">
+            <button class="modal-btn" data-action="zero-cancel">Abbrechen</button>
+            <button class="modal-btn modal-btn--primary" data-action="zero-confirm">Mit 0 eintragen</button>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  if (manualPicker) {
+    const cat = ALL_CATS.find((c) => c.key === manualPicker.key);
+    const isEdit = manualPicker.editIdx != null;
+    const deleteLink = isEdit ? `<button class="modal-link-danger" data-action="manual-delete">Eintrag löschen</button>` : "";
+
+    if (cat.fixed) {
+      html += `
+        <div class="modal-backdrop" data-action="manual-cancel">
+          <div class="modal-sheet" data-action="noop">
+            <h3 class="modal-title">${cat.label}</h3>
+            <p class="modal-text">${isEdit ? "Wert anpassen oder Eintrag löschen." : "Wurde die Kombination erreicht?"}</p>
+            <div class="chip-row">
+              <button class="chip num ${manualValue === 0 ? "chip--active" : ""}" data-action="manual-fixed" data-value="0">0</button>
+              <button class="chip num ${manualValue === cat.fixed ? "chip--active" : ""}" data-action="manual-fixed" data-value="${cat.fixed}">${cat.fixed}</button>
+            </div>
+            ${deleteLink}
+          </div>
+        </div>`;
+    } else {
+      const max = cat.n ? cat.n * 5 : cat.key === "chance" ? 30 : cat.key === "onePair" ? 12 : cat.key === "twoPair" ? 24 : cat.key === "threeKind" ? 18 : 24;
+      const step = cat.n || 1;
+      html += `
+        <div class="modal-backdrop" data-action="manual-cancel">
+          <div class="modal-sheet" data-action="noop">
+            <h3 class="modal-title">${cat.label}</h3>
+            <p class="modal-text">${isEdit ? "Wert anpassen oder Eintrag löschen." : "Erzielten Punktewert eintragen."}</p>
+            <div class="stepper">
+              <button data-action="manual-dec" data-step="${step}">${ICON.minus}</button>
+              <span class="stepper__value num">${manualValue}</span>
+              <button data-action="manual-inc" data-step="${step}" data-max="${max}">${ICON.plus}</button>
+            </div>
+            <div class="modal-btn-row">
+              <button class="modal-btn" data-action="manual-cancel">${ICON.x} Abbrechen</button>
+              <button class="modal-btn modal-btn--primary" data-action="manual-confirm">${ICON.check} ${isEdit ? "Speichern" : "Eintragen"}</button>
+            </div>
+            ${deleteLink}
+          </div>
+        </div>`;
+    }
+  }
+
+  if (abortConfirm) {
+    html += `
+      <div class="modal-backdrop" data-action="abort-cancel">
+        <div class="modal-sheet" data-action="noop">
+          <h3 class="modal-title">Spiel abbrechen?</h3>
+          <p class="modal-text">Die laufende Partie geht verloren. Danach kannst du sofort neu starten und auch die Spieleranzahl ändern.</p>
+          <div class="modal-btn-row">
+            <button class="modal-btn" data-action="abort-cancel">Weiterspielen</button>
+            <button class="modal-btn modal-btn--danger" data-action="abort-confirm">Abbrechen &amp; neu</button>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  return html;
+}
+
+/* ---------------- Events (Delegation über #app) ---------------- */
+
+function initEvents() {
+  const app = document.getElementById("app");
+
+  app.addEventListener("click", (e) => {
+    const el = e.target.closest("[data-action]");
+    if (!el) return;
+    const action = el.dataset.action;
+
+    switch (action) {
+      case "noop": return;
+      case "set-player-count": setPlayerCount(Number(el.dataset.n)); return;
+      case "set-dice-mode": setDiceMode(el.dataset.mode); return;
+      case "start-game": startGame(); return;
+      case "toggle-history": toggleHistoryPanel(); return;
+      case "clear-history": clearGameHistory(); return;
+      case "abort-game": requestAbort(); return;
+      case "abort-cancel": resolveAbort(false); return;
+      case "abort-confirm": resolveAbort(true); return;
+      case "undo": undo(); return;
+      case "roll": doRoll(); return;
+      case "hold-die": toggleHold(Number(el.dataset.i)); return;
+      case "commit": requestCommit(el.dataset.key, Number(el.dataset.value)); return;
+      case "open-manual": openManualPicker(el.dataset.key); return;
+      case "open-edit": openEdit(Number(el.dataset.player), el.dataset.key); return;
+      case "manual-cancel": manualPicker = null; render(); return;
+      case "manual-confirm": onManualConfirm(); return;
+      case "manual-inc": manualInc(Number(el.dataset.step), Number(el.dataset.max)); return;
+      case "manual-dec": manualDec(Number(el.dataset.step)); return;
+      case "manual-fixed": manualFixedPick(Number(el.dataset.value)); return;
+      case "manual-delete": deleteEntry(); return;
+      case "zero-cancel": resolveZero(false); return;
+      case "zero-confirm": resolveZero(true); return;
+      case "new-game": newGame(); return;
+      case "hard-reset":
+        try { localStorage.removeItem(STORAGE_KEY_STATE); } catch (e) {}
+        location.reload();
+        return;
+    }
+  });
+
+  app.addEventListener("input", (e) => {
+    if (e.target.matches("input[data-pname]")) {
+      const idx = Number(e.target.dataset.pname);
+      state.names[idx] = e.target.value;
+      saveState(); // bewusst KEIN render() — sonst verliert das Feld den Fokus
+    }
+  });
+}
+
+/* ---------------- Start ---------------- */
+
+function init() {
+  loadState();
+  sanitizeState();
+  initEvents();
+  render();
+}
+
+document.addEventListener("DOMContentLoaded", init);
+
+</script>
+</body>
+</html>
