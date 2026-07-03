@@ -90,6 +90,18 @@ input, select { font-family: inherit; }
   flex: 1; border: none; outline: none; background: transparent; font-size: 17px;
   font-weight: 500; padding: 14px 4px; color: var(--ink); min-width: 0;
 }
+.name-row__remove {
+  width: 30px; height: 30px; border-radius: 50%; border: none; background: none;
+  color: var(--ink-soft); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.name-row__remove:active { background: var(--line); }
+.add-player-btn {
+  margin-top: 10px; width: 100%; padding: 13px; border-radius: 14px; border: 1.3px dashed var(--line);
+  background: none; color: var(--ink-soft); font-size: 14px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.add-player-btn:active { background: var(--white); border-color: var(--bronze); color: var(--bronze); }
+.setup__version { text-align: center; font-size: 11px; color: #C7C2B4; margin: 28px 0 0; }
 .btn-primary {
   margin-top: 28px; width: 100%; padding: 18px; border: none; border-radius: 16px;
   background: var(--green); color: var(--white); font-size: 17px; font-weight: 600;
@@ -283,8 +295,18 @@ input, select { font-family: inherit; }
 .standing-name { font-weight: 600; font-size: 15px; }
 .standing-total { font-weight: 700; font-size: 17px; }
 
+/* ---------- Feiermoment-Toast ---------- */
+.flash-toast {
+  position: fixed; top: 14px; left: 50%; transform: translateX(-50%);
+  background: var(--green); color: var(--white); padding: 11px 22px; border-radius: 999px;
+  font-weight: 700; font-size: 14.5px; box-shadow: 0 10px 24px -8px rgba(31,61,50,0.5);
+  z-index: 80; animation: flashIn .25s ease; white-space: nowrap;
+}
+.flash-toast--bronze { background: var(--bronze); box-shadow: 0 10px 24px -8px rgba(176,133,82,0.5); }
+@keyframes flashIn { from { opacity: 0; transform: translateX(-50%) translateY(-10px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+
 @media (prefers-reduced-motion: reduce) {
-  .die--rolling, .winner-overlay, .winner-trophy, .modal-sheet { animation: none !important; }
+  .die--rolling, .winner-overlay, .winner-trophy, .modal-sheet, .flash-toast { animation: none !important; }
 }
 
 </style>
@@ -441,6 +463,21 @@ let manualPicker = null;  // { key, editIdx? }
 let manualValue = 0;
 let abortConfirm = false;
 let historyOpen = false;
+let flashMessage = null; // { text, tone } — kurzer, ruhiger Feiermoment (Yatzy, Bonus)
+let flashTimer = null;
+
+// Dezentes haptisches Feedback, wo unterstützt (v.a. Android/Chrome).
+// iOS Safari kennt die Vibration API nicht — dort passiert einfach nichts, kein Fehler.
+function haptic(pattern) {
+  try { if (navigator.vibrate) navigator.vibrate(pattern); } catch (e) {}
+}
+
+function showFlash(text, tone) {
+  flashMessage = { text, tone };
+  render();
+  clearTimeout(flashTimer);
+  flashTimer = setTimeout(() => { flashMessage = null; render(); }, 2200);
+}
 
 /* ---------------- Persistenz ---------------- */
 
@@ -527,7 +564,20 @@ function addHistoryEntry() {
 
 /* ---------------- Spielsteuerung ---------------- */
 
-function setPlayerCount(n) { state.playerCount = n; saveState(); render(); }
+function addPlayer() {
+  if (state.playerCount >= MAX_PLAYERS) return;
+  state.playerCount += 1;
+  saveState();
+  render();
+}
+function removePlayer(i) {
+  if (state.playerCount <= 1) return;
+  state.names.splice(i, 1);
+  state.names.push(`Spieler ${state.names.length + 1}`);
+  state.playerCount -= 1;
+  saveState();
+  render();
+}
 function setDiceMode(mode) { state.diceMode = mode; saveState(); render(); }
 
 function startGame() {
@@ -590,19 +640,37 @@ function undo() {
 function doRoll() {
   if (state.rollsLeft <= 0 || rolling) return;
   rolling = true;
-  render();
+  const heldSnapshot = [...state.held];
+
+  let ticks = 0;
+  const tickInterval = setInterval(() => {
+    state.dice = state.dice.map((v, i) => (heldSnapshot[i] ? v : rollDie()));
+    render();
+    ticks++;
+    if (ticks >= 5) clearInterval(tickInterval);
+  }, 80);
+
   setTimeout(() => {
-    state.dice = state.dice.map((v, i) => (state.held[i] ? v : rollDie()));
+    clearInterval(tickInterval);
+    state.dice = state.dice.map((v, i) => (heldSnapshot[i] ? v : rollDie()));
     state.rollsLeft -= 1;
     rolling = false;
     saveState();
     render();
-  }, 380);
+
+    if (diceCounts(state.dice).includes(5)) {
+      haptic([30, 40, 30, 40, 70]);
+      showFlash("Yatzy! 🎲", "bronze");
+    } else {
+      haptic(12);
+    }
+  }, 430);
 }
 
 function toggleHold(i) {
   if (state.rollsLeft === 3 || rolling) return;
   state.held[i] = !state.held[i];
+  haptic(8);
   render();
 }
 
@@ -622,11 +690,21 @@ function advanceTurn() {
 }
 
 function commitScore(key, value) {
+  const player = state.players[state.currentIdx];
+  const bonusBefore = bonusOf(player.scores);
   pushHistory();
-  state.players[state.currentIdx].scores[key] = value;
+  player.scores[key] = value;
+  const bonusAfter = bonusOf(player.scores);
   advanceTurn();
   saveState();
   render();
+
+  if (bonusBefore !== 25 && bonusAfter === 25) {
+    haptic([20, 30, 40]);
+    showFlash(`Bonus erreicht — ${escapeHtml(player.name)} +25`, "bronze");
+  } else {
+    haptic(10);
+  }
 }
 
 function requestCommit(key, value) {
@@ -717,6 +795,7 @@ function render() {
     else if (state.phase === "playing") html = renderGame();
     else if (state.phase === "finished") html = renderWinner();
     html += renderModals();
+    html += renderFlash();
   } catch (err) {
     html = renderCrashRecovery(err);
   }
@@ -741,13 +820,20 @@ function renderCrashRecovery(err) {
   `;
 }
 
+const APP_VERSION = "1.4";
+
 function renderSetup() {
   const nameRows = Array.from({ length: state.playerCount }).map((_, i) => `
     <div class="name-row">
       <span class="name-row__dot"></span>
       <input type="text" value="${escapeHtml(state.names[i] || "")}" placeholder="Spieler ${i + 1}" data-pname="${i}" maxlength="18">
+      ${state.playerCount > 1 ? `<button class="name-row__remove" data-action="remove-player" data-i="${i}" aria-label="Spieler entfernen">${ICON.x}</button>` : ""}
     </div>
   `).join("");
+
+  const addPlayerBtn = state.playerCount < MAX_PLAYERS
+    ? `<button class="add-player-btn" data-action="add-player">${ICON.plus} Spieler hinzufügen</button>`
+    : "";
 
   const modeNote = state.diceMode === "digital"
     ? "Die App übernimmt Würfeln, Halten und die Punkteberechnung."
@@ -761,26 +847,14 @@ function renderSetup() {
       <h1 class="setup__title">Stressless Yatzy</h1>
       <p class="setup__sub">Ruhig. Klar. Kein Stress. Bereit in unter einer Minute.</p>
 
-      <p class="setup__label">Anzahl Spieler</p>
-      <div class="segmented">
-        ${[1, 2, 3, 4].map((n) => `<button data-action="set-player-count" data-n="${n}" class="${state.playerCount === n ? "active" : ""}">${n}</button>`).join("")}
-      </div>
-
-      <p class="setup__label">Namen</p>
+      <p class="setup__label">Spieler</p>
       <div class="name-list">${nameRows}</div>
+      ${addPlayerBtn}
 
       <p class="setup__label" style="margin-top:28px">Würfel</p>
-      <div class="mode-choice">
-        <button class="mode-card ${state.diceMode === "digital" ? "active" : ""}" data-action="set-dice-mode" data-mode="digital">
-          ${ICON.dice}
-          <span class="mode-card__title">Digitale Würfel</span>
-          <span class="mode-card__sub">Die App würfelt für dich</span>
-        </button>
-        <button class="mode-card ${state.diceMode === "physical" ? "active" : ""}" data-action="set-dice-mode" data-mode="physical">
-          ${ICON.pen}
-          <span class="mode-card__title">Eigene Würfel</span>
-          <span class="mode-card__sub">Nur Punkte eintragen</span>
-        </button>
+      <div class="segmented">
+        <button data-action="set-dice-mode" data-mode="digital" class="${state.diceMode === "digital" ? "active" : ""}">Digital</button>
+        <button data-action="set-dice-mode" data-mode="physical" class="${state.diceMode === "physical" ? "active" : ""}">Eigene Würfel</button>
       </div>
 
       <button class="btn-primary" data-action="start-game">Spiel starten</button>
@@ -788,6 +862,7 @@ function renderSetup() {
 
       <button class="link-btn" data-action="toggle-history">${historyToggleLabel}</button>
       ${historyOpen ? renderHistoryPanel(h) : ""}
+      <p class="setup__version">v${APP_VERSION}</p>
     </section>
   `;
 }
@@ -844,7 +919,7 @@ function renderGame() {
   const headerCells = players.map((p, i) => `
     <th class="col-player ${RANK_CLASSES[ranking[i]]}">
       <div class="thead-name ${i === state.currentIdx ? "current" : ""}">
-        <span class="thead-name__label">${i === state.currentIdx ? '<span class="thead-dot"></span>' : ""}${escapeHtml(p.name)}</span>
+        <span class="thead-name__label">${escapeHtml(p.name)}</span>
         <span class="thead-name__total num total-cell">${totalOf(p.scores)}</span>
       </div>
     </th>
@@ -864,7 +939,7 @@ function renderGame() {
 
   let diceZoneHtml;
   if (state.diceMode === "digital") {
-    const diceHtml = state.dice.map((v, i) => renderDie(v, state.held[i], state.rollsLeft < 3, i)).join("");
+    const diceHtml = state.dice.map((v, i) => renderDie(v, state.held[i], state.rollsLeft < 3 && !rolling, i)).join("");
     const rollControls = state.rollsLeft > 0
       ? `<div class="roll-area">
            <button class="btn-roll" data-action="roll" ${rolling ? "disabled" : ""}>Würfeln</button>
@@ -882,10 +957,7 @@ function renderGame() {
         <div class="topbar__row">
           <div class="topbar__player">
             <span class="topbar__avatar">${(current.name.trim().charAt(0) || "?").toUpperCase()}</span>
-            <div style="min-width:0">
-              <div class="topbar__name">${escapeHtml(current.name)}</div>
-              <div class="topbar__hint">ist am Zug</div>
-            </div>
+            <div class="topbar__name">${escapeHtml(current.name)}</div>
           </div>
           <div class="topbar__actions">
             <button class="icon-btn" data-action="abort-game" aria-label="Neues Spiel">${ICON.restart}</button>
@@ -935,6 +1007,12 @@ function renderWinner() {
       <button class="btn-primary" style="max-width:380px;margin-top:0" data-action="new-game">Neues Spiel</button>
     </section>
   `;
+}
+
+function renderFlash() {
+  if (!flashMessage) return "";
+  const tone = flashMessage.tone === "bronze" ? "flash-toast--bronze" : "";
+  return `<div class="flash-toast ${tone}">${flashMessage.text}</div>`;
 }
 
 function renderModals() {
@@ -1024,7 +1102,8 @@ function initEvents() {
 
     switch (action) {
       case "noop": return;
-      case "set-player-count": setPlayerCount(Number(el.dataset.n)); return;
+      case "add-player": addPlayer(); return;
+      case "remove-player": removePlayer(Number(el.dataset.i)); return;
       case "set-dice-mode": setDiceMode(el.dataset.mode); return;
       case "start-game": startGame(); return;
       case "toggle-history": toggleHistoryPanel(); return;
