@@ -30,10 +30,10 @@
   --ivory:#F7F3EA; --white:#FFFFFF; --ink:#262A28; --ink-soft:#6E7168;
   --green:#1F3D32; --green-soft:#EAF0EC; --bronze:#B08552; --bronze-soft:#F4EADC;
   --line:#E8E2D3;
-  --rank1-soft: rgba(31,61,50,0.055);   --rank1-strong: rgba(31,61,50,0.14);
-  --rank2-soft: rgba(176,133,82,0.075); --rank2-strong: rgba(176,133,82,0.18);
-  --rank3-soft: rgba(38,42,40,0.04);    --rank3-strong: rgba(38,42,40,0.085);
-  --rank4-soft: rgba(38,42,40,0.018);   --rank4-strong: rgba(38,42,40,0.045);
+  --pcol1-soft: rgba(217,113,78,0.09);  --pcol1-strong: rgba(217,113,78,0.24);
+  --pcol2-soft: rgba(47,122,120,0.09);  --pcol2-strong: rgba(47,122,120,0.24);
+  --pcol3-soft: rgba(214,164,49,0.12);  --pcol3-strong: rgba(214,164,49,0.28);
+  --pcol4-soft: rgba(140,90,130,0.10);  --pcol4-strong: rgba(140,90,130,0.24);
 }
 
 * { box-sizing: border-box; }
@@ -226,16 +226,17 @@ input, select { font-family: inherit; }
   color: var(--bronze); background: var(--bronze-soft); padding: 1px 5px; border-radius: 6px; vertical-align: 1px;
 }
 
-.total-cell { border-radius: 8px; padding: 2px 9px; }
-.rank-1, .rank-2, .rank-3, .rank-4 { transition: background .2s ease; }
-.rank-1 { background: var(--rank1-soft); }
-.rank-2 { background: var(--rank2-soft); }
-.rank-3 { background: var(--rank3-soft); }
-.rank-4 { background: var(--rank4-soft); }
-.rank-1 .total-cell { background: var(--rank1-strong); }
-.rank-2 .total-cell { background: var(--rank2-strong); }
-.rank-3 .total-cell { background: var(--rank3-strong); }
-.rank-4 .total-cell { background: var(--rank4-strong); }
+.total-cell { border-radius: 8px; padding: 2px 9px; color: var(--white); }
+
+.pcol-0, .pcol-1, .pcol-2, .pcol-3 { transition: background .2s ease; }
+.pcol-0 { background: var(--pcol1-soft); }
+.pcol-1 { background: var(--pcol2-soft); }
+.pcol-2 { background: var(--pcol3-soft); }
+.pcol-3 { background: var(--pcol4-soft); }
+.col-player.pcol-0 .thead-name { background: var(--pcol1-strong); }
+.col-player.pcol-1 .thead-name { background: var(--pcol2-strong); }
+.col-player.pcol-2 .thead-name { background: var(--pcol3-strong); }
+.col-player.pcol-3 .thead-name { background: var(--pcol4-strong); }
 
 /* ---------- Modal ---------- */
 .modal-backdrop {
@@ -293,7 +294,7 @@ input, select { font-family: inherit; }
 .standing-row__left { display: flex; align-items: center; gap: 12px; }
 .standing-rank { font-weight: 700; color: var(--ink-soft); width: 18px; }
 .standing-name { font-weight: 600; font-size: 15px; }
-.standing-total { font-weight: 700; font-size: 17px; }
+.standing-total { font-weight: 700; font-size: 17px; color: var(--white); padding: 3px 11px; border-radius: 8px; }
 
 /* ---------- Feiermoment-Toast ---------- */
 .flash-toast {
@@ -351,7 +352,31 @@ const LOWER = [
 ];
 
 const ALL_CATS = [...UPPER, ...LOWER];
-const RANK_CLASSES = ["rank-1", "rank-2", "rank-3", "rank-4"];
+const PLAYER_COL_CLASSES = ["pcol-0", "pcol-1", "pcol-2", "pcol-3"];
+
+// Bestes Ergebnis = Grün, schlechtestes = Rot, alle dazwischen linear
+// interpoliert entsprechend ihrer Platzierung — eine echte Ampel-Skala,
+// die sich automatisch an die aktuelle Spieleranzahl anpasst.
+const RANK_GREEN = [62, 122, 84];
+const RANK_RED = [181, 71, 63];
+function rankColorRGB(rank, count) {
+  if (count <= 1) return RANK_GREEN;
+  const t = rank / (count - 1);
+  return [
+    Math.round(RANK_GREEN[0] + (RANK_RED[0] - RANK_GREEN[0]) * t),
+    Math.round(RANK_GREEN[1] + (RANK_RED[1] - RANK_GREEN[1]) * t),
+    Math.round(RANK_GREEN[2] + (RANK_RED[2] - RANK_GREEN[2]) * t),
+  ];
+}
+function rankColor(rank, count) {
+  const [r, g, b] = rankColorRGB(rank, count);
+  return `rgb(${r}, ${g}, ${b})`;
+}
+
+// Persönliche Spielerfarben — warm und fröhlich, unabhängig vom (informativen)
+// Rangfarbsystem. Begleiten einen Spieler durchs ganze Spiel: Namens-Punkt,
+// Avatar, Feiermomente. Vier klar unterscheidbare, aber elegante Töne.
+const PLAYER_COLORS = ["#D9714E", "#2F7A78", "#D6A431", "#8C5A82"];
 
 function diceCounts(dice) {
   const c = [0, 0, 0, 0, 0, 0, 0];
@@ -447,7 +472,7 @@ const PIP_PATTERNS = { 1: [4], 2: [0, 8], 3: [0, 4, 8], 4: [0, 2, 6, 8], 5: [0, 
 let state = {
   phase: "setup", // setup | playing | finished
   playerCount: 2,
-  names: ["Spieler 1", "Spieler 2", "Spieler 3", "Spieler 4"],
+  names: ["", "", "", ""],
   diceMode: "digital", // digital | physical — gilt für die ganze Partie
   players: [],
   currentIdx: 0,
@@ -472,8 +497,8 @@ function haptic(pattern) {
   try { if (navigator.vibrate) navigator.vibrate(pattern); } catch (e) {}
 }
 
-function showFlash(text, tone) {
-  flashMessage = { text, tone };
+function showFlash(text, color) {
+  flashMessage = { text, color };
   render();
   clearTimeout(flashTimer);
   flashTimer = setTimeout(() => { flashMessage = null; render(); }, 2200);
@@ -528,7 +553,7 @@ function sanitizeState() {
   }
   if (!Array.isArray(state.names) || state.names.length < MAX_PLAYERS) {
     const old = Array.isArray(state.names) ? state.names : [];
-    state.names = Array.from({ length: MAX_PLAYERS }, (_, i) => old[i] || `Spieler ${i + 1}`);
+    state.names = Array.from({ length: MAX_PLAYERS }, (_, i) => (old[i] != null ? old[i] : ""));
   }
   if ((state.phase === "playing" || state.phase === "finished") && state.players.length === 0) {
     state.phase = "setup";
@@ -573,7 +598,7 @@ function addPlayer() {
 function removePlayer(i) {
   if (state.playerCount <= 1) return;
   state.names.splice(i, 1);
-  state.names.push(`Spieler ${state.names.length + 1}`);
+  state.names.push("");
   state.playerCount -= 1;
   saveState();
   render();
@@ -660,7 +685,7 @@ function doRoll() {
 
     if (diceCounts(state.dice).includes(5)) {
       haptic([30, 40, 30, 40, 70]);
-      showFlash("Yatzy! 🎲", "bronze");
+      showFlash("Yatzy! 🎲", PLAYER_COLORS[state.currentIdx]);
     } else {
       haptic(12);
     }
@@ -690,7 +715,8 @@ function advanceTurn() {
 }
 
 function commitScore(key, value) {
-  const player = state.players[state.currentIdx];
+  const scoringIdx = state.currentIdx;
+  const player = state.players[scoringIdx];
   const bonusBefore = bonusOf(player.scores);
   pushHistory();
   player.scores[key] = value;
@@ -701,7 +727,7 @@ function commitScore(key, value) {
 
   if (bonusBefore !== 25 && bonusAfter === 25) {
     haptic([20, 30, 40]);
-    showFlash(`Bonus erreicht — ${escapeHtml(player.name)} +25`, "bronze");
+    showFlash(`Bonus erreicht — ${escapeHtml(player.name)} +25`, PLAYER_COLORS[scoringIdx]);
   } else {
     haptic(10);
   }
@@ -825,7 +851,7 @@ const APP_VERSION = "1.4";
 function renderSetup() {
   const nameRows = Array.from({ length: state.playerCount }).map((_, i) => `
     <div class="name-row">
-      <span class="name-row__dot"></span>
+      <span class="name-row__dot" style="background:${PLAYER_COLORS[i]}"></span>
       <input type="text" value="${escapeHtml(state.names[i] || "")}" placeholder="Spieler ${i + 1}" data-pname="${i}" maxlength="18">
       ${state.playerCount > 1 ? `<button class="name-row__remove" data-action="remove-player" data-i="${i}" aria-label="Spieler entfernen">${ICON.x}</button>` : ""}
     </div>
@@ -893,19 +919,19 @@ function renderCategoryRow(cat, players, ranking, currentIdx, sectionStart) {
   const cells = players.map((p, i) => {
     const filled = p.scores[cat.key] != null;
     const isCurrent = i === currentIdx;
-    const rankClass = RANK_CLASSES[ranking[i]];
+    const colClass = PLAYER_COL_CLASSES[i];
 
     if (filled) {
-      return `<td class="cell ${rankClass}"><button class="cell-filled num" data-action="open-edit" data-player="${i}" data-key="${cat.key}">${p.scores[cat.key]}</button></td>`;
+      return `<td class="cell ${colClass}"><button class="cell-filled num" data-action="open-edit" data-player="${i}" data-key="${cat.key}">${p.scores[cat.key]}</button></td>`;
     }
     if (isCurrent && state.diceMode === "digital" && state.rollsLeft < 3) {
       const val = computeScore(cat.key, state.dice);
-      return `<td class="cell ${rankClass}"><button class="cell-potential num ${val === 0 ? "cell-potential--zero" : ""}" data-action="commit" data-key="${cat.key}" data-value="${val}">${val}</button></td>`;
+      return `<td class="cell ${colClass}"><button class="cell-potential num ${val === 0 ? "cell-potential--zero" : ""}" data-action="commit" data-key="${cat.key}" data-value="${val}">${val}</button></td>`;
     }
     if (isCurrent && state.diceMode === "physical") {
-      return `<td class="cell ${rankClass}"><button class="cell-manual-btn" data-action="open-manual" data-key="${cat.key}">eintragen</button></td>`;
+      return `<td class="cell ${colClass}"><button class="cell-manual-btn" data-action="open-manual" data-key="${cat.key}">eintragen</button></td>`;
     }
-    return `<td class="cell ${rankClass}"><span class="cell-empty">–</span></td>`;
+    return `<td class="cell ${colClass}"><span class="cell-empty">–</span></td>`;
   }).join("");
 
   return `<tr class="cat-row ${sectionStart ? "cat-row--section-start" : ""}"><td class="col-label">${cat.label}</td>${cells}</tr>`;
@@ -917,10 +943,10 @@ function renderGame() {
   const current = players[state.currentIdx];
 
   const headerCells = players.map((p, i) => `
-    <th class="col-player ${RANK_CLASSES[ranking[i]]}">
+    <th class="col-player ${PLAYER_COL_CLASSES[i]}">
       <div class="thead-name ${i === state.currentIdx ? "current" : ""}">
         <span class="thead-name__label">${escapeHtml(p.name)}</span>
-        <span class="thead-name__total num total-cell">${totalOf(p.scores)}</span>
+        <span class="thead-name__total num total-cell" style="background:${rankColor(ranking[i], players.length)}">${totalOf(p.scores)}</span>
       </div>
     </th>
   `).join("");
@@ -930,11 +956,11 @@ function renderGame() {
 
   const bonusSumCells = players.map((p, i) => {
     const b = bonusOf(p.scores);
-    return `<td class="cell bonus-value ${RANK_CLASSES[ranking[i]]}">${upperSum(p.scores)}${b ? `<span class="bonus-badge">+${b}</span>` : ""}</td>`;
+    return `<td class="cell bonus-value ${PLAYER_COL_CLASSES[i]}">${upperSum(p.scores)}${b ? `<span class="bonus-badge">+${b}</span>` : ""}</td>`;
   }).join("");
   const bonusTotalCells = players.map((p, i) => {
     const b = bonusOf(p.scores);
-    return `<td class="cell bonus-value ${RANK_CLASSES[ranking[i]]}" style="font-weight:700">${upperSum(p.scores) + (b ?? 0)}</td>`;
+    return `<td class="cell bonus-value ${PLAYER_COL_CLASSES[i]}" style="font-weight:700">${upperSum(p.scores) + (b ?? 0)}</td>`;
   }).join("");
 
   let diceZoneHtml;
@@ -956,7 +982,7 @@ function renderGame() {
       <div class="topbar">
         <div class="topbar__row">
           <div class="topbar__player">
-            <span class="topbar__avatar">${(current.name.trim().charAt(0) || "?").toUpperCase()}</span>
+            <span class="topbar__avatar" style="background:${PLAYER_COLORS[state.currentIdx]}">${(current.name.trim().charAt(0) || "?").toUpperCase()}</span>
             <div class="topbar__name">${escapeHtml(current.name)}</div>
           </div>
           <div class="topbar__actions">
@@ -989,13 +1015,17 @@ function renderWinner() {
     .map((p, i) => ({ name: p.name, total: totalOf(p.scores), rank: ranking[i] }))
     .sort((a, b) => a.rank - b.rank);
   const winner = sorted[0];
+  const count = state.players.length;
 
-  const rows = sorted.map((p, idx) => `
-    <div class="standing-row ${RANK_CLASSES[p.rank]}">
+  const rows = sorted.map((p) => {
+    const [r, g, b] = rankColorRGB(p.rank, count);
+    return `
+    <div class="standing-row" style="background: rgba(${r}, ${g}, ${b}, 0.12)">
       <div class="standing-row__left"><span class="standing-rank">${p.rank + 1}.</span><span class="standing-name">${escapeHtml(p.name)}</span></div>
-      <span class="standing-total num">${p.total}</span>
+      <span class="standing-total num" style="background: rgb(${r}, ${g}, ${b})">${p.total}</span>
     </div>
-  `).join("");
+  `;
+  }).join("");
 
   return `
     <section class="winner-overlay">
@@ -1011,8 +1041,8 @@ function renderWinner() {
 
 function renderFlash() {
   if (!flashMessage) return "";
-  const tone = flashMessage.tone === "bronze" ? "flash-toast--bronze" : "";
-  return `<div class="flash-toast ${tone}">${flashMessage.text}</div>`;
+  const style = flashMessage.color ? ` style="background:${flashMessage.color}"` : "";
+  return `<div class="flash-toast"${style}>${flashMessage.text}</div>`;
 }
 
 function renderModals() {
