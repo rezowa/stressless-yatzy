@@ -96,11 +96,11 @@ input, select { font-family: inherit; }
 }
 .name-row__remove:active { background: var(--line); }
 .add-player-btn {
-  margin-top: 10px; width: 100%; padding: 13px; border-radius: 14px; border: 1.3px dashed var(--line);
-  background: none; color: var(--ink-soft); font-size: 14px; font-weight: 600;
+  margin-top: 10px; width: 100%; padding: 13px; border-radius: 14px; border: none;
+  background: none; color: var(--ink-soft); font-size: 14px; font-weight: 700;
   display: flex; align-items: center; justify-content: center; gap: 6px;
 }
-.add-player-btn:active { background: var(--white); border-color: var(--bronze); color: var(--bronze); }
+.add-player-btn:active { background: var(--bronze-soft); color: var(--bronze); }
 .setup__version { text-align: center; font-size: 11px; color: #C7C2B4; margin: 28px 0 0; }
 .btn-primary {
   margin-top: 28px; width: 100%; padding: 18px; border: none; border-radius: 16px;
@@ -189,31 +189,31 @@ input, select { font-family: inherit; }
 .scorecard { width: 100%; border-collapse: separate; border-spacing: 0; }
 .scorecard th, .scorecard td { padding: 0; }
 .col-label {
-  width: 128px; min-width: 128px; text-align: left; font-size: 13.5px; color: var(--ink);
-  padding: 9px 8px 9px 4px !important; font-weight: 500;
+  width: 92px; min-width: 92px; text-align: left; font-size: 12.5px; color: var(--ink);
+  padding: 7px 6px 7px 4px !important; font-weight: 500; line-height: 1.25;
 }
-.col-player { width: 78px; min-width: 78px; text-align: center; }
-.thead-name { padding: 8px 4px !important; text-align: center; border-radius: 12px 12px 0 0; }
+.col-player { width: 64px; min-width: 64px; text-align: center; }
+.thead-name { padding: 7px 3px !important; text-align: center; border-radius: 12px 12px 0 0; }
 .thead-name.current { box-shadow: inset 0 -2px 0 var(--green); }
-.thead-name__label { font-size: 12.5px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: block; max-width: 74px; margin: 0 auto; }
-.thead-name__total { display: inline-block; margin-top: 4px; font-size: 15px; font-weight: 700; }
+.thead-name__label { font-size: 11.5px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: block; max-width: 52px; margin: 0 auto; }
+.thead-name__total { display: inline-block; margin-top: 3px; font-size: 14px; font-weight: 700; }
 .thead-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--bronze); margin-right: 5px; vertical-align: 1px; }
 
 .cat-row td { border-bottom: 1px solid var(--line); }
 .cat-row:last-child td { border-bottom: none; }
-.cat-row--section-start td { border-top: 1.5px solid var(--line); padding-top: 15px !important; }
-.cell { text-align: center; padding: 9px 2px !important; }
-.cell-empty { color: #C7C2B4; font-size: 15px; }
+.cat-row--section-start td { border-top: 1.5px solid var(--line); padding-top: 12px !important; }
+.cell { text-align: center; padding: 6px 2px !important; }
+.cell-empty { color: #C7C2B4; font-size: 14px; }
 .cell-potential {
-  background: none; border: none; font-weight: 700; font-size: 16px;
-  color: var(--bronze); padding: 6px 8px; border-radius: 10px;
+  background: none; border: none; font-weight: 700; font-size: 15px;
+  color: var(--bronze); padding: 4px 6px; border-radius: 10px;
 }
 .cell-potential:active { background: var(--bronze-soft); }
 .cell-potential--zero { color: #B7A98F; }
-.cell-filled { background: none; border: none; font-size: 15.5px; font-weight: 600; color: var(--ink); padding: 6px 8px; border-radius: 10px; }
+.cell-filled { background: none; border: none; font-size: 14.5px; font-weight: 600; color: var(--ink); padding: 4px 6px; border-radius: 10px; }
 .cell-filled:active { background: var(--line); }
 .cell-manual-btn {
-  background: none; border: none; color: var(--bronze); font-size: 12.5px; font-weight: 700; padding: 7px 6px; border-radius: 10px; width: 100%;
+  background: none; border: none; color: var(--bronze); font-size: 11.5px; font-weight: 700; padding: 5px 4px; border-radius: 10px; width: 100%;
 }
 .cell-manual-btn:active { background: var(--bronze-soft); }
 
@@ -846,7 +846,7 @@ function renderCrashRecovery(err) {
   `;
 }
 
-const APP_VERSION = "1.5";
+const APP_VERSION = "1.7";
 
 function renderSetup() {
   const nameRows = Array.from({ length: state.playerCount }).map((_, i) => `
@@ -958,10 +958,6 @@ function renderGame() {
     const b = bonusOf(p.scores);
     return `<td class="cell bonus-value ${PLAYER_COL_CLASSES[i]}">${upperSum(p.scores)}${b ? `<span class="bonus-badge">+${b}</span>` : ""}</td>`;
   }).join("");
-  const bonusTotalCells = players.map((p, i) => {
-    const b = bonusOf(p.scores);
-    return `<td class="cell bonus-value ${PLAYER_COL_CLASSES[i]}" style="font-weight:700">${upperSum(p.scores) + (b ?? 0)}</td>`;
-  }).join("");
 
   let diceZoneHtml;
   if (state.diceMode === "digital") {
@@ -999,8 +995,7 @@ function renderGame() {
           <thead><tr><th class="col-label"></th>${headerCells}</tr></thead>
           <tbody>
             ${upperRows}
-            <tr class="bonus-row"><td class="col-label bonus-label">Summe / Bonus</td>${bonusSumCells}</tr>
-            <tr class="bonus-row bonus-row--total"><td class="col-label bonus-label" style="font-weight:700">Total oben</td>${bonusTotalCells}</tr>
+            <tr class="bonus-row bonus-row--total"><td class="col-label bonus-label">Summe / Bonus</td>${bonusSumCells}</tr>
             ${lowerRows}
           </tbody>
         </table>
