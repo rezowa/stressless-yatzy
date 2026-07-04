@@ -145,7 +145,7 @@ input, select { font-family: inherit; }
 .topbar__player { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .topbar__avatar {
   width: 34px; height: 34px; border-radius: 50%; background: var(--green); color: var(--white);
-  display: flex; align-items: center; justify-content: center; font-family:'Fraunces',serif; font-weight:600; font-size:15px; flex-shrink:0;
+  display: flex; align-items: center; justify-content: center; font-family:'Inter',sans-serif; font-weight:700; font-size:15px; flex-shrink:0;
 }
 .topbar__name { font-weight: 600; font-size: 16px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .topbar__hint { font-size: 12px; color: var(--ink-soft); }
@@ -158,14 +158,20 @@ input, select { font-family: inherit; }
 .topbar__actions { display: flex; gap: 8px; flex-shrink: 0; }
 
 /* ---------- Dice zone ---------- */
-.dicezone { padding: 18px 16px 8px; max-width: 480px; margin: 0 auto; }
-.dice-row { display: flex; justify-content: center; gap: 10px; padding: 6px 0 16px; }
+.dicezone { padding: 14px 12px 6px; max-width: 480px; margin: 0 auto; }
+.dice-row { display: flex; justify-content: center; align-items: center; gap: 8px; padding: 4px 0 12px; }
 .die {
-  width: 58px; height: 58px; border-radius: 14px; background: var(--white);
-  border: none; box-shadow: 0 3px 0 rgba(0,0,0,0.05), 0 10px 18px -10px rgba(38,42,40,0.35);
-  padding: 8px; transition: transform .15s ease, box-shadow .15s ease;
+  width: 58px; height: 58px; border-radius: 15px; background: var(--white);
+  border: 1px solid rgba(232,226,211,.95); box-shadow: 0 3px 0 rgba(0,0,0,0.05), 0 10px 18px -10px rgba(38,42,40,0.35);
+  padding: 8px; transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
+  flex: 0 0 auto;
 }
-.die--held { box-shadow: 0 0 0 2.5px var(--bronze), 0 10px 18px -8px rgba(176,133,82,0.4); transform: translateY(-4px); }
+.die--held {
+  background: linear-gradient(145deg, #FFF2DD 0%, #F4D2A2 100%);
+  border-color: rgba(176,133,82,.95);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 0 0 2px rgba(176,133,82,.58), 0 8px 16px -9px rgba(122,74,30,.72);
+  transform: scale(1.02);
+}
 .die--locked { opacity: 0.55; }
 .die--rolling { animation: shake .38s ease; }
 @keyframes shake { 0%{transform:rotate(0)} 25%{transform:rotate(-9deg)} 50%{transform:rotate(7deg)} 75%{transform:rotate(-4deg)} 100%{transform:rotate(0)} }
@@ -182,21 +188,21 @@ input, select { font-family: inherit; }
 .btn-roll:disabled { background: #C9C4B4; box-shadow: none; }
 .btn-roll:active:not(:disabled) { transform: scale(0.97); }
 .rolls-left { font-size: 13px; color: var(--ink-soft); }
-.manual-hint { text-align: center; color: var(--ink-soft); font-size: 13.5px; padding: 10px 20px 14px; line-height: 1.5; }
+.manual-hint { text-align: center; color: #B7B2A2; font-size: 12px; padding: 6px 24px 10px; line-height: 1.4; }
 
 /* ---------- Scorecard ---------- */
 .scorecard-wrap { padding: 4px 12px calc(30px + env(safe-area-inset-bottom)); overflow-x: auto; max-width: 480px; margin: 0 auto; }
 .scorecard { width: 100%; border-collapse: separate; border-spacing: 0; }
 .scorecard th, .scorecard td { padding: 0; }
 .col-label {
-  width: 92px; min-width: 92px; text-align: left; font-size: 12.5px; color: var(--ink);
+  width: 112px; min-width: 112px; text-align: left; font-size: 14.5px; color: var(--ink);
   padding: 7px 6px 7px 4px !important; font-weight: 500; line-height: 1.25;
 }
-.col-player { width: 64px; min-width: 64px; text-align: center; }
-.thead-name { padding: 7px 3px !important; text-align: center; border-radius: 12px 12px 0 0; }
+.col-player { width: 54px; min-width: 54px; text-align: center; }
+.thead-name { padding: 7px 2px !important; text-align: center; border-radius: 12px 12px 0 0; }
 .thead-name.current { box-shadow: inset 0 -2px 0 var(--green); }
-.thead-name__label { font-size: 11.5px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: block; max-width: 52px; margin: 0 auto; }
-.thead-name__total { display: inline-block; margin-top: 3px; font-size: 14px; font-weight: 700; }
+.thead-name__label { font-size: 10.5px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: block; max-width: 48px; margin: 0 auto; }
+.thead-name__total { display: inline-block; margin-top: 3px; font-size: 13.5px; font-weight: 700; }
 .thead-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--bronze); margin-right: 5px; vertical-align: 1px; }
 
 .cat-row td { border-bottom: 1px solid var(--line); }
@@ -213,7 +219,7 @@ input, select { font-family: inherit; }
 .cell-filled { background: none; border: none; font-size: 14.5px; font-weight: 600; color: var(--ink); padding: 4px 6px; border-radius: 10px; }
 .cell-filled:active { background: var(--line); }
 .cell-manual-btn {
-  background: none; border: none; color: var(--bronze); font-size: 11.5px; font-weight: 700; padding: 5px 4px; border-radius: 10px; width: 100%;
+  background: none; border: none; color: var(--bronze); font-size: 10px; font-weight: 700; padding: 5px 2px; border-radius: 10px; width: 100%;
 }
 .cell-manual-btn:active { background: var(--bronze-soft); }
 
@@ -249,7 +255,7 @@ input, select { font-family: inherit; }
   animation: sheetUp .22s ease;
 }
 @keyframes sheetUp { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-.modal-title { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600; margin: 0 0 6px; }
+.modal-title { font-family: 'Inter', sans-serif; font-size: 19px; font-weight: 700; margin: 0 0 6px; letter-spacing: -0.01em; }
 .modal-text { color: var(--ink-soft); font-size: 14.5px; margin: 0 0 20px; line-height: 1.5; }
 .modal-btn-row { display: flex; gap: 10px; }
 .modal-btn {
@@ -267,6 +273,13 @@ input, select { font-family: inherit; }
 }
 .stepper button:active { transform: scale(0.93); }
 .stepper__value { font-size: 40px; font-weight: 700; min-width: 74px; text-align: center; }
+.stepper__input {
+  font-size: 40px; font-weight: 700; min-width: 74px; max-width: 96px; text-align: center;
+  border: none; border-bottom: 2px solid var(--line); background: none; color: var(--ink);
+  padding-bottom: 2px; -moz-appearance: textfield;
+}
+.stepper__input:focus { outline: none; border-color: var(--bronze); }
+.stepper__input::-webkit-outer-spin-button, .stepper__input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 .chip-row { display: flex; gap: 10px; margin-bottom: 22px; }
 .chip {
   flex: 1; padding: 16px 0; border-radius: 14px; border: 1.5px solid var(--line); background: var(--white);
@@ -306,8 +319,383 @@ input, select { font-family: inherit; }
 .flash-toast--bronze { background: var(--bronze); box-shadow: 0 10px 24px -8px rgba(176,133,82,0.5); }
 @keyframes flashIn { from { opacity: 0; transform: translateX(-50%) translateY(-10px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
 
+
+@media (max-width: 380px) {
+  .dicezone { padding-left: 8px; padding-right: 8px; }
+  .dice-row { gap: 6px; }
+  .die { width: 52px; height: 52px; border-radius: 13px; padding: 7px; }
+  .die__pip { width: 7px; height: 7px; }
+  .btn-roll { padding: 13px 26px; min-width: 140px; }
+  .roll-area { gap: 9px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .die--rolling, .winner-overlay, .winner-trophy, .modal-sheet, .flash-toast { animation: none !important; }
+}
+
+
+
+/* ---------- Stressless Yatzy 2.0 Feinschliff ---------- */
+body::before {
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:-1;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(176,133,82,.10), transparent 34%),
+    radial-gradient(circle at 86% 18%, rgba(31,61,50,.08), transparent 32%);
+}
+.setup, .dicezone, .scorecard-wrap { width:100%; }
+.scorecard-wrap { border-radius:22px 22px 0 0; }
+.scorecard { background:rgba(255,255,255,.54); border-radius:18px; overflow:hidden; box-shadow:0 18px 38px -34px rgba(38,42,40,.65); }
+.thead-name.current { background:rgba(31,61,50,.13) !important; box-shadow: inset 0 -3px 0 var(--green); }
+.cell-potential { position:relative; min-width:36px; background:rgba(176,133,82,.08); }
+.cell-potential--best { color:var(--green); background:rgba(31,61,50,.12); box-shadow:0 0 0 1.5px rgba(31,61,50,.16) inset; }
+.cell-potential--best::after { content:"★"; position:absolute; top:-9px; right:-4px; font-size:10px; color:var(--bronze); }
+.die {
+  background:
+    radial-gradient(circle at 32% 24%, rgba(255,255,255,.92), transparent 35%),
+    linear-gradient(145deg,#fffdf8,#eee8dc);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.85), 0 3px 0 rgba(38,42,40,.055), 0 13px 22px -14px rgba(38,42,40,.46);
+}
+.die--held {
+  background:
+    radial-gradient(circle at 30% 22%, rgba(255,255,255,.72), transparent 32%),
+    linear-gradient(145deg,#FFE9C8,#E6A862 72%,#C27B34);
+  border-color:#B87537;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.62), inset 0 -4px 8px rgba(125,70,24,.18), 0 0 0 2px rgba(176,133,82,.72), 0 10px 18px -11px rgba(125,70,24,.78);
+  transform:scale(1.025);
+}
+.die--held .die__pip--on { background:#211815; }
+.btn-roll { min-width:154px; }
+.stats-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:14px; }
+.stat-card { background:var(--white); border:1px solid var(--line); border-radius:14px; padding:12px 14px; }
+.stat-card__label { display:block; color:var(--ink-soft); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; }
+.stat-card__value { display:block; font-size:23px; font-weight:800; margin-top:4px; }
+.player-stats { margin-top:10px; display:flex; flex-direction:column; gap:8px; }
+.player-stat-row { display:flex; justify-content:space-between; gap:12px; background:rgba(255,255,255,.72); border:1px solid var(--line); border-radius:12px; padding:9px 12px; font-size:13px; }
+.player-stat-row strong { color:var(--green); }
+.winner-meta { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:-20px 0 26px; }
+.winner-chip { background:var(--white); border:1px solid var(--line); border-radius:999px; padding:7px 12px; font-size:13px; font-weight:700; color:var(--ink-soft); }
+
+
+/* ---------- Stressless Yatzy 2.2 – Smartphone Scorecard & Dice Polish ---------- */
+.topbar { padding: 10px 12px 8px; }
+.topbar__avatar { width: 32px; height: 32px; font-size: 14px; }
+.topbar__name { font-size: 15px; }
+.icon-btn { width: 36px; height: 36px; }
+
+.dicezone { padding: 10px 10px 4px; }
+.dice-row { gap: 7px; padding: 2px 0 10px; align-items: center; }
+.die {
+  width: 56px; height: 56px; border-radius: 16px; padding: 8px;
+  transform: translateY(0);
+  will-change: transform;
+}
+.die:active { transform: scale(.96); }
+.die--held {
+  transform: translateY(0) scale(1.025);
+  outline: 1px solid rgba(255,255,255,.45);
+}
+.die--held:active { transform: translateY(0) scale(.98); }
+.roll-area { gap: 10px; }
+.btn-roll { padding: 13px 28px; min-width: 148px; }
+.rolls-left { min-width: 94px; text-align: left; }
+
+.scorecard-wrap {
+  padding: 2px 8px calc(18px + env(safe-area-inset-bottom));
+  overflow-x: hidden;
+}
+.scorecard {
+  table-layout: fixed;
+  border: 1px solid rgba(232,226,211,.92);
+  border-radius: 16px;
+}
+.col-label {
+  width: 31%; min-width: 0;
+  font-size: 13px;
+  padding: 5px 5px 5px 8px !important;
+  letter-spacing: -.01em;
+}
+.col-player { width: auto; min-width: 0; }
+.thead-name {
+  padding: 6px 1px 5px !important;
+  border-radius: 10px 10px 0 0;
+}
+.col-player--current .thead-name {
+  background: linear-gradient(180deg, rgba(31,61,50,.22), rgba(31,61,50,.10)) !important;
+  box-shadow: inset 0 -3px 0 var(--green), 0 8px 18px -18px rgba(31,61,50,.8);
+}
+.thead-name__label { font-size: 9.8px; max-width: 42px; }
+.thead-name__total { font-size: 12.6px; margin-top: 2px; padding: 1px 7px; }
+.cat-row td { border-bottom-color: rgba(232,226,211,.72); }
+.cat-row--section-start td { padding-top: 8px !important; border-top: 1.5px solid rgba(176,133,82,.35); }
+.cell {
+  padding: 4px 1px !important;
+  font-size: 13px;
+  position: relative;
+}
+.cell-current {
+  background-image: linear-gradient(180deg, rgba(31,61,50,.055), rgba(31,61,50,.025));
+}
+.cell-filled {
+  font-size: 13.4px;
+  padding: 3px 5px;
+  min-width: 27px;
+}
+.cell-potential {
+  font-size: 13.6px;
+  padding: 3px 6px;
+  min-width: 30px;
+  border-radius: 9px;
+  background: rgba(176,133,82,.13);
+  box-shadow: inset 0 0 0 1px rgba(176,133,82,.14);
+}
+.cell-potential--best {
+  color: var(--green);
+  background: rgba(31,61,50,.13);
+  box-shadow: inset 0 0 0 1px rgba(31,61,50,.22), 0 4px 10px -9px rgba(31,61,50,.8);
+}
+.cell-potential--best::after { top: -7px; right: -2px; font-size: 9px; }
+.cell-manual-btn { font-size: 9px; padding: 4px 1px; }
+.cell-empty { font-size: 12px; opacity: .75; }
+.bonus-row td { padding: 2px 1px !important; }
+.bonus-label { font-size: 10.5px; }
+.bonus-value { font-size: 11.8px; }
+.bonus-badge { font-size: 9px; padding: 0 4px; margin-left: 2px; }
+
+@media (max-width: 380px) {
+  .topbar { padding-left: 9px; padding-right: 9px; }
+  .dicezone { padding-left: 7px; padding-right: 7px; }
+  .dice-row { gap: 5px; }
+  .die { width: 51px; height: 51px; border-radius: 14px; padding: 7px; }
+  .die__pip { width: 7px; height: 7px; }
+  .btn-roll { padding: 12px 20px; min-width: 134px; }
+  .rolls-left { font-size: 12px; min-width: 80px; }
+  .scorecard-wrap { padding-left: 6px; padding-right: 6px; }
+  .col-label { width: 32%; font-size: 12.2px; padding-left: 6px !important; }
+  .thead-name__label { font-size: 9.2px; max-width: 38px; }
+  .thead-name__total { font-size: 11.8px; padding: 1px 6px; }
+  .cell { padding-top: 3px !important; padding-bottom: 3px !important; }
+  .cell-filled, .cell-potential { font-size: 12.6px; }
+}
+
+
+/* ---------- Stressless Yatzy 3.1 – sichtbarer Premium-Schritt ---------- */
+:root {
+  --dice-cream:#FFFDF7;
+  --dice-edge:#D8CDB9;
+  --dice-shadow:rgba(38,42,40,.30);
+  --active-glow:rgba(31,61,50,.18);
+}
+
+body {
+  background:
+    radial-gradient(circle at 50% -8%, rgba(176,133,82,.18), transparent 34%),
+    linear-gradient(180deg, #FBF7EE 0%, var(--ivory) 42%, #F2EBDD 100%);
+}
+
+.topbar {
+  padding: 8px 10px 7px;
+  background: rgba(247,243,234,.84);
+  border-bottom-color: rgba(176,133,82,.20);
+}
+.topbar__row { max-width: 480px; margin: 0 auto; }
+.topbar__player {
+  background: rgba(255,255,255,.56);
+  border: 1px solid rgba(232,226,211,.92);
+  border-radius: 999px;
+  padding: 4px 10px 4px 4px;
+  box-shadow: 0 10px 26px -24px rgba(38,42,40,.9);
+}
+.topbar__avatar { box-shadow: inset 0 1px 0 rgba(255,255,255,.35); }
+.topbar__name::after {
+  content: " am Zug";
+  color: var(--ink-soft);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.dicezone {
+  position: relative;
+  margin: 8px auto 4px;
+  padding: 10px 10px 8px;
+  max-width: 472px;
+}
+.dicezone::before {
+  content: "";
+  position: absolute;
+  left: 10px; right: 10px; top: 0; bottom: 0;
+  border-radius: 26px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.74), rgba(255,255,255,.36)),
+    radial-gradient(circle at 50% 0%, rgba(176,133,82,.16), transparent 55%);
+  border: 1px solid rgba(232,226,211,.92);
+  box-shadow: 0 22px 42px -34px rgba(38,42,40,.75);
+  pointer-events: none;
+}
+.dice-row, .roll-area, .manual-hint { position: relative; z-index: 1; }
+.dice-row {
+  gap: clamp(5px, 1.8vw, 9px);
+  padding: 2px 0 8px;
+  perspective: 700px;
+}
+
+.die {
+  position: relative;
+  width: clamp(49px, 14.5vw, 58px);
+  height: clamp(49px, 14.5vw, 58px);
+  border-radius: 17px;
+  padding: 8px;
+  overflow: visible;
+  background:
+    radial-gradient(circle at 28% 20%, rgba(255,255,255,1) 0%, rgba(255,255,255,.72) 24%, transparent 45%),
+    linear-gradient(145deg, #FFFFFF 0%, var(--dice-cream) 42%, #ECE2D2 100%);
+  border: 1px solid rgba(216,205,185,.95);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.95),
+    inset 0 -5px 10px rgba(105,88,61,.10),
+    0 2px 0 rgba(143,119,82,.22),
+    0 15px 22px -16px var(--dice-shadow);
+  transform: translateY(0) rotateX(0deg) rotateZ(0deg);
+  transition: transform .18s cubic-bezier(.2,.9,.2,1), box-shadow .18s ease, background .18s ease, border-color .18s ease, filter .18s ease;
+}
+.die::after {
+  content:"";
+  position:absolute;
+  inset: 7px;
+  border-radius: 13px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.55);
+  pointer-events:none;
+}
+.die__shine {
+  position:absolute;
+  left: 11px; top: 8px;
+  width: 34%; height: 18%;
+  border-radius: 999px;
+  background: rgba(255,255,255,.58);
+  filter: blur(.2px);
+  transform: rotate(-18deg);
+  pointer-events:none;
+}
+.die__grid { position: relative; z-index: 1; }
+.die__pip {
+  width: clamp(6.5px, 1.9vw, 8px);
+  height: clamp(6.5px, 1.9vw, 8px);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.18), inset 0 -1px 1px rgba(0,0,0,.20);
+}
+.die__pip--on { background: #1F211F; }
+.die:active { transform: translateY(1px) scale(.965); }
+
+.die--held {
+  background:
+    radial-gradient(circle at 28% 18%, rgba(255,255,255,.92) 0%, rgba(255,255,255,.46) 23%, transparent 46%),
+    linear-gradient(145deg, #FFEBCB 0%, #E9B574 48%, #B87C3E 100%);
+  border-color: rgba(150,92,42,.95);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.72),
+    inset 0 -6px 12px rgba(90,50,18,.22),
+    0 0 0 2px rgba(176,133,82,.72),
+    0 3px 0 rgba(112,69,31,.32),
+    0 16px 24px -15px rgba(112,69,31,.85);
+  filter: saturate(1.06);
+  transform: translateY(0) scale(1.035);
+}
+.die--held .die__pip--on { background:#211715; }
+.die__holdmark {
+  position:absolute;
+  right:-5px; top:-6px;
+  width: 18px; height: 18px;
+  border-radius:999px;
+  display:flex; align-items:center; justify-content:center;
+  background: var(--green);
+  color: white;
+  font-size: 11px;
+  font-weight: 900;
+  box-shadow: 0 5px 12px -6px rgba(31,61,50,.9), 0 0 0 2px rgba(255,255,255,.85);
+}
+.die--locked:not(.die--held) {
+  opacity: .72;
+  filter: grayscale(.08) saturate(.92);
+}
+.die--rolling {
+  animation: premiumRoll .44s cubic-bezier(.2,.8,.25,1);
+}
+@keyframes premiumRoll {
+  0% { transform: rotateX(0) rotateZ(0) scale(1); }
+  24% { transform: rotateX(20deg) rotateZ(-10deg) scale(1.05); }
+  52% { transform: rotateX(-14deg) rotateZ(12deg) scale(.98); }
+  78% { transform: rotateX(8deg) rotateZ(-5deg) scale(1.03); }
+  100% { transform: rotateX(0) rotateZ(0) scale(1); }
+}
+
+.roll-area {
+  min-height: 40px;
+  gap: 8px;
+}
+.btn-roll {
+  padding: 12px 25px;
+  min-width: 142px;
+  background: linear-gradient(180deg, #285141, var(--green));
+  box-shadow: 0 11px 22px -14px rgba(31,61,50,.9), inset 0 1px 0 rgba(255,255,255,.18);
+}
+.rolls-left {
+  min-width: auto;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.52);
+  border: 1px solid rgba(232,226,211,.86);
+  font-size: 11.5px;
+}
+
+.scorecard-wrap {
+  margin-top: 2px;
+  padding: 0 6px calc(12px + env(safe-area-inset-bottom));
+}
+.scorecard {
+  border-radius: 18px;
+  background: rgba(255,255,255,.70);
+  box-shadow: 0 24px 50px -42px rgba(38,42,40,.85);
+}
+.col-label {
+  width: 30%;
+  font-size: 12.2px;
+  padding: 4px 4px 4px 7px !important;
+}
+.thead-name { padding: 5px 1px 4px !important; }
+.thead-name__label { font-size: 9.1px; }
+.thead-name__total { font-size: 11.7px; padding: 1px 6px; }
+.col-player--current .thead-name {
+  background: linear-gradient(180deg, rgba(31,61,50,.26), rgba(31,61,50,.12)) !important;
+  box-shadow: inset 0 -3px 0 var(--green), 0 0 0 1px rgba(31,61,50,.10) inset;
+}
+.cell { padding: 3px 1px !important; }
+.cat-row--section-start td { padding-top: 6px !important; }
+.cell-current {
+  background-image: linear-gradient(90deg, rgba(31,61,50,.075), rgba(31,61,50,.035));
+}
+.cell-potential {
+  font-size: 12.8px;
+  padding: 3px 5px;
+  border-radius: 8px;
+  background: rgba(176,133,82,.16);
+}
+.cell-filled { font-size: 12.8px; padding: 2px 5px; }
+.cell-empty { font-size: 11.5px; }
+.bonus-label { font-size: 10px; }
+.bonus-value { font-size: 11.2px; }
+
+@media (max-width: 380px) {
+  .topbar__name::after { display:none; }
+  .dicezone { margin-top: 6px; padding-top: 8px; }
+  .dicezone::before { left: 6px; right: 6px; border-radius: 22px; }
+  .dice-row { gap: 4px; }
+  .die { width: 49px; height: 49px; border-radius: 15px; padding: 7px; }
+  .die__holdmark { width:16px; height:16px; font-size:10px; top:-5px; right:-4px; }
+  .btn-roll { min-width: 128px; padding: 11px 18px; }
+  .rolls-left { font-size: 10.8px; padding: 6px 8px; }
+  .scorecard-wrap { padding-left: 4px; padding-right: 4px; }
+  .col-label { width: 31%; font-size: 11.4px; padding-left: 5px !important; }
+  .thead-name__label { font-size: 8.6px; max-width: 36px; }
+  .thead-name__total { font-size: 11px; padding: 1px 5px; }
+  .cell-potential, .cell-filled { font-size: 12px; }
 }
 
 </style>
@@ -328,6 +716,7 @@ input, select { font-family: inherit; }
 
 const STORAGE_KEY_STATE = "stressless_yatzy_state_v3";
 const STORAGE_KEY_HISTORY = "stressless_yatzy_history_v2";
+const STORAGE_KEY_STATS = "stressless_yatzy_stats_v1";
 const MAX_PLAYERS = 4;
 
 const UPPER = [
@@ -479,6 +868,9 @@ let state = {
   dice: [1, 1, 1, 1, 1],
   held: [false, false, false, false, false],
   rollsLeft: 3,
+  startedAt: null,
+  yatzysThisGame: [],
+  turnYatzyShown: false,
 };
 
 let rolling = false;
@@ -488,6 +880,7 @@ let manualPicker = null;  // { key, editIdx? }
 let manualValue = 0;
 let abortConfirm = false;
 let historyOpen = false;
+let statsOpen = false;
 let flashMessage = null; // { text, tone } — kurzer, ruhiger Feiermoment (Yatzy, Bonus)
 let flashTimer = null;
 
@@ -555,6 +948,8 @@ function sanitizeState() {
     const old = Array.isArray(state.names) ? state.names : [];
     state.names = Array.from({ length: MAX_PLAYERS }, (_, i) => (old[i] != null ? old[i] : ""));
   }
+  if (!Array.isArray(state.yatzysThisGame)) state.yatzysThisGame = [];
+  if (typeof state.turnYatzyShown !== "boolean") state.turnYatzyShown = false;
   if ((state.phase === "playing" || state.phase === "finished") && state.players.length === 0) {
     state.phase = "setup";
   }
@@ -572,6 +967,69 @@ function loadGameHistory() {
 }
 function saveGameHistory(h) {
   try { localStorage.setItem(STORAGE_KEY_HISTORY, JSON.stringify(h)); } catch (e) {}
+}
+function loadGlobalStats() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY_STATS);
+    const d = raw ? JSON.parse(raw) : { games: 0, players: {} };
+    if (!d.players) d.players = {};
+    return d;
+  } catch (e) { return { games: 0, players: {} }; }
+}
+function saveGlobalStats(stats) {
+  try { localStorage.setItem(STORAGE_KEY_STATS, JSON.stringify(stats)); } catch (e) {}
+}
+function updateGlobalStats() {
+  const stats = loadGlobalStats();
+  stats.games = (stats.games || 0) + 1;
+  const ranking = computeRanking(state.players);
+  state.players.forEach((p, i) => {
+    const key = p.name.trim() || `Spieler ${i + 1}`;
+    const total = totalOf(p.scores);
+    const rec = stats.players[key] || { games: 0, wins: 0, totalScore: 0, bestScore: 0, yatzys: 0 };
+    rec.games += 1;
+    rec.wins += ranking[i] === 0 ? 1 : 0;
+    rec.totalScore += total;
+    rec.bestScore = Math.max(rec.bestScore || 0, total);
+    rec.yatzys = (rec.yatzys || 0) + (Array.isArray(state.yatzysThisGame) ? (state.yatzysThisGame[i] || 0) : 0);
+    stats.players[key] = rec;
+  });
+  saveGlobalStats(stats);
+}
+function renderStatsPanel() {
+  const stats = loadGlobalStats();
+  const players = Object.entries(stats.players || {})
+    .map(([name, r]) => ({ name, ...r, avg: r.games ? Math.round(r.totalScore / r.games) : 0 }))
+    .sort((a,b) => (b.wins - a.wins) || (b.bestScore - a.bestScore) || a.name.localeCompare(b.name));
+  const best = players.reduce((m,p) => Math.max(m, p.bestScore || 0), 0);
+  const yatzys = players.reduce((m,p) => m + (p.yatzys || 0), 0);
+  const rows = players.slice(0, 8).map((p) => `<div class="player-stat-row"><span>${escapeHtml(p.name)} · ${p.games} Spiele · Ø ${p.avg}</span><strong>${p.wins} Siege</strong></div>`).join("");
+  return `<div class="history-panel">
+    <div class="stats-grid">
+      <div class="stat-card"><span class="stat-card__label">Spiele</span><span class="stat-card__value num">${stats.games || 0}</span></div>
+      <div class="stat-card"><span class="stat-card__label">Bestwert</span><span class="stat-card__value num">${best}</span></div>
+      <div class="stat-card"><span class="stat-card__label">Yatzys</span><span class="stat-card__value num">${yatzys}</span></div>
+      <div class="stat-card"><span class="stat-card__label">Spieler</span><span class="stat-card__value num">${players.length}</span></div>
+    </div>
+    <div class="player-stats">${rows || '<p class="history-empty">Noch keine Statistik vorhanden.</p>'}</div>
+  </div>`;
+}
+function bestScoreKeyForCurrentDice() {
+  if (state.diceMode !== "digital" || state.rollsLeft === 3) return null;
+  const p = state.players[state.currentIdx];
+  let bestKey = null, bestVal = -1;
+  ALL_CATS.forEach((cat) => {
+    if (p.scores[cat.key] == null) {
+      const v = computeScore(cat.key, state.dice);
+      if (v > bestVal) { bestVal = v; bestKey = cat.key; }
+    }
+  });
+  return bestKey;
+}
+function formatDuration(ms) {
+  if (!ms || ms < 0) return "–";
+  const min = Math.max(1, Math.round(ms / 60000));
+  return `${min} Min.`;
 }
 function addHistoryEntry() {
   const now = new Date();
@@ -616,10 +1074,17 @@ function startGame() {
   state.held = [false, false, false, false, false];
   state.rollsLeft = 3;
   state.phase = "playing";
+  state.startedAt = Date.now();
+  state.yatzysThisGame = ps.map(() => 0);
+  state.turnYatzyShown = false;
   history = [];
   saveState();
   render();
 }
+
+// Gleiche Spieler, gleiche Reihenfolge, gleicher Würfel-Modus — der häufigste
+// Fall am Familientisch verdient den kürzesten Weg zurück ins Spiel.
+function rematch() { startGame(); }
 
 function newGame() {
   state.phase = "setup";
@@ -628,6 +1093,9 @@ function newGame() {
   state.dice = [1, 1, 1, 1, 1];
   state.held = [false, false, false, false, false];
   state.rollsLeft = 3;
+  state.startedAt = null;
+  state.yatzysThisGame = [];
+  state.turnYatzyShown = false;
   history = [];
   zeroConfirm = null;
   manualPicker = null;
@@ -684,6 +1152,12 @@ function doRoll() {
     render();
 
     if (diceCounts(state.dice).includes(5)) {
+      if (!state.turnYatzyShown) {
+        state.turnYatzyShown = true;
+        if (!Array.isArray(state.yatzysThisGame)) state.yatzysThisGame = [];
+        state.yatzysThisGame[state.currentIdx] = (state.yatzysThisGame[state.currentIdx] || 0) + 1;
+        saveState();
+      }
       haptic([30, 40, 30, 40, 70]);
       showFlash("Yatzy! 🎲", PLAYER_COLORS[state.currentIdx]);
     } else {
@@ -707,9 +1181,11 @@ function advanceTurn() {
   state.rollsLeft = 3;
   manualPicker = null;
   manualValue = 0;
+  state.turnYatzyShown = false;
 
   if (state.players.length > 0 && state.players.every((p) => isComplete(p.scores))) {
     addHistoryEntry();
+    updateGlobalStats();
     state.phase = "finished";
   }
 }
@@ -777,8 +1253,38 @@ function confirmManualEdit() {
   else commit();
 }
 function manualFixedPick(v) { manualValue = v; onManualConfirm(); }
-function manualInc(step, max) { manualValue = Math.min(max, manualValue + step); render(); }
-function manualDec(step) { manualValue = Math.max(0, manualValue - step); render(); }
+
+// Nur tatsächlich erreichbare Punktwerte pro Kategorie — z.B. bei "3 Gleiche"
+// sind nur Vielfache von 3 (0,3,6,9,12,15,18) überhaupt möglich, nicht jede Zahl.
+// "2 Paar" ist ein Sonderfall: alle geraden Werte ab 4 sind erreichbar (auch
+// über einen Vierer-Pasch, der ja zwei Paare enthält), nur die 2 nicht.
+const VALID_VALUES = {
+  onePair: [0, 2, 4, 6, 8, 10, 12],
+  twoPair: [0, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24],
+  threeKind: [0, 3, 6, 9, 12, 15, 18],
+  fourKind: [0, 4, 8, 12, 16, 20, 24],
+};
+
+function manualInc(key, step, max) {
+  const set = VALID_VALUES[key];
+  if (set) {
+    const idx = set.indexOf(manualValue);
+    manualValue = set[Math.min(set.length - 1, (idx === -1 ? 0 : idx) + 1)];
+  } else {
+    manualValue = Math.min(max, manualValue + step);
+  }
+  render();
+}
+function manualDec(key, step) {
+  const set = VALID_VALUES[key];
+  if (set) {
+    const idx = set.indexOf(manualValue);
+    manualValue = set[Math.max(0, (idx === -1 ? 0 : idx) - 1)];
+  } else {
+    manualValue = Math.max(0, manualValue - step);
+  }
+  render();
+}
 
 function openEdit(playerIdx, key) {
   const current = state.players[playerIdx].scores[key];
@@ -846,7 +1352,7 @@ function renderCrashRecovery(err) {
   `;
 }
 
-const APP_VERSION = "1.7";
+const APP_VERSION = "3.1";
 
 function renderSetup() {
   const nameRows = Array.from({ length: state.playerCount }).map((_, i) => `
@@ -888,6 +1394,8 @@ function renderSetup() {
 
       <button class="link-btn" data-action="toggle-history">${historyToggleLabel}</button>
       ${historyOpen ? renderHistoryPanel(h) : ""}
+      <button class="link-btn" data-action="toggle-stats">Ewige Statistik</button>
+      ${statsOpen ? renderStatsPanel() : ""}
       <p class="setup__version">v${APP_VERSION}</p>
     </section>
   `;
@@ -907,31 +1415,33 @@ function renderHistoryPanel(h) {
 function renderDie(value, held, canHold, i) {
   const pips = PIP_PATTERNS[value] || [];
   const pipsHtml = Array.from({ length: 9 }).map((_, idx) => `<span class="die__pip ${pips.includes(idx) ? "die__pip--on" : ""}"></span>`).join("");
-  const classes = ["die"];
+  const classes = ["die", `die-face-${value}`];
   if (held) classes.push("die--held");
   if (rolling) classes.push("die--rolling");
   if (!canHold) classes.push("die--locked");
   const attrs = canHold ? `data-action="hold-die" data-i="${i}"` : "";
-  return `<button type="button" class="${classes.join(" ")}" ${attrs} aria-label="Würfel zeigt ${value}${held ? ", gehalten" : ""}"><span class="die__grid">${pipsHtml}</span></button>`;
+  return `<button type="button" class="${classes.join(" ")}" ${attrs} aria-label="Würfel zeigt ${value}${held ? ", gehalten" : ""}"><span class="die__shine"></span><span class="die__grid">${pipsHtml}</span>${held ? `<span class="die__holdmark">✓</span>` : ""}</button>`;
 }
 
-function renderCategoryRow(cat, players, ranking, currentIdx, sectionStart) {
+function renderCategoryRow(cat, players, ranking, currentIdx, sectionStart, bestKey) {
   const cells = players.map((p, i) => {
     const filled = p.scores[cat.key] != null;
     const isCurrent = i === currentIdx;
     const colClass = PLAYER_COL_CLASSES[i];
+    const currentClass = isCurrent ? " cell-current" : "";
 
     if (filled) {
-      return `<td class="cell ${colClass}"><button class="cell-filled num" data-action="open-edit" data-player="${i}" data-key="${cat.key}">${p.scores[cat.key]}</button></td>`;
+      return `<td class="cell ${colClass}${currentClass}"><button class="cell-filled num" data-action="open-edit" data-player="${i}" data-key="${cat.key}">${p.scores[cat.key]}</button></td>`;
     }
     if (isCurrent && state.diceMode === "digital" && state.rollsLeft < 3) {
       const val = computeScore(cat.key, state.dice);
-      return `<td class="cell ${colClass}"><button class="cell-potential num ${val === 0 ? "cell-potential--zero" : ""}" data-action="commit" data-key="${cat.key}" data-value="${val}">${val}</button></td>`;
+      const bestClass = cat.key === bestKey && val > 0 ? " cell-potential--best" : "";
+      return `<td class="cell ${colClass}${currentClass}"><button class="cell-potential num ${val === 0 ? "cell-potential--zero" : ""}${bestClass}" data-action="commit" data-key="${cat.key}" data-value="${val}">${val}</button></td>`;
     }
     if (isCurrent && state.diceMode === "physical") {
-      return `<td class="cell ${colClass}"><button class="cell-manual-btn" data-action="open-manual" data-key="${cat.key}">eintragen</button></td>`;
+      return `<td class="cell ${colClass}${currentClass}"><button class="cell-manual-btn" data-action="open-manual" data-key="${cat.key}">eintragen</button></td>`;
     }
-    return `<td class="cell ${colClass}"><span class="cell-empty">–</span></td>`;
+    return `<td class="cell ${colClass}${currentClass}"><span class="cell-empty">–</span></td>`;
   }).join("");
 
   return `<tr class="cat-row ${sectionStart ? "cat-row--section-start" : ""}"><td class="col-label">${cat.label}</td>${cells}</tr>`;
@@ -943,7 +1453,7 @@ function renderGame() {
   const current = players[state.currentIdx];
 
   const headerCells = players.map((p, i) => `
-    <th class="col-player ${PLAYER_COL_CLASSES[i]}">
+    <th class="col-player ${PLAYER_COL_CLASSES[i]} ${i === state.currentIdx ? "col-player--current" : ""}">
       <div class="thead-name ${i === state.currentIdx ? "current" : ""}">
         <span class="thead-name__label">${escapeHtml(p.name)}</span>
         <span class="thead-name__total num total-cell" style="background:${rankColor(ranking[i], players.length)}">${totalOf(p.scores)}</span>
@@ -951,12 +1461,13 @@ function renderGame() {
     </th>
   `).join("");
 
-  const upperRows = UPPER.map((cat) => renderCategoryRow(cat, players, ranking, state.currentIdx, false)).join("");
-  const lowerRows = LOWER.map((cat, idx) => renderCategoryRow(cat, players, ranking, state.currentIdx, idx === 0)).join("");
+  const bestKey = bestScoreKeyForCurrentDice();
+  const upperRows = UPPER.map((cat) => renderCategoryRow(cat, players, ranking, state.currentIdx, false, bestKey)).join("");
+  const lowerRows = LOWER.map((cat, idx) => renderCategoryRow(cat, players, ranking, state.currentIdx, idx === 0, bestKey)).join("");
 
   const bonusSumCells = players.map((p, i) => {
     const b = bonusOf(p.scores);
-    return `<td class="cell bonus-value ${PLAYER_COL_CLASSES[i]}">${upperSum(p.scores)}${b ? `<span class="bonus-badge">+${b}</span>` : ""}</td>`;
+    return `<td class="cell bonus-value ${PLAYER_COL_CLASSES[i]} ${i === state.currentIdx ? "cell-current" : ""}">${upperSum(p.scores)}${b ? `<span class="bonus-badge">+${b}</span>` : ""}</td>`;
   }).join("");
 
   let diceZoneHtml;
@@ -1011,6 +1522,9 @@ function renderWinner() {
     .sort((a, b) => a.rank - b.rank);
   const winner = sorted[0];
   const count = state.players.length;
+  const winnerIdx = state.players.findIndex((p) => p.name === winner.name && totalOf(p.scores) === winner.total);
+  const yatzys = Array.isArray(state.yatzysThisGame) ? state.yatzysThisGame.reduce((a,b)=>a+(b||0),0) : 0;
+  const duration = formatDuration(Date.now() - (state.startedAt || Date.now()));
 
   const rows = sorted.map((p) => {
     const [r, g, b] = rankColorRGB(p.rank, count);
@@ -1028,8 +1542,10 @@ function renderWinner() {
       <p class="winner-title">Sieger</p>
       <h2 class="winner-name">${escapeHtml(winner.name)}</h2>
       <p class="winner-score num">${winner.total} Punkte</p>
+      <div class="winner-meta"><span class="winner-chip">Dauer ${duration}</span><span class="winner-chip">${yatzys} Yatzy</span><span class="winner-chip">Bonus ${bonusOf(state.players[winnerIdx]?.scores || {}) === 25 ? "erreicht" : "offen"}</span></div>
       <div class="standings">${rows}</div>
-      <button class="btn-primary" style="max-width:380px;margin-top:0" data-action="new-game">Neues Spiel</button>
+      <button class="btn-primary" style="max-width:380px;margin-top:0" data-action="rematch">Nochmal spielen</button>
+      <button class="link-btn" data-action="new-game">Neue Runde einrichten</button>
     </section>
   `;
 }
@@ -1076,17 +1592,21 @@ function renderModals() {
           </div>
         </div>`;
     } else {
-      const max = cat.n ? cat.n * 5 : cat.key === "chance" ? 30 : cat.key === "onePair" ? 12 : cat.key === "twoPair" ? 24 : cat.key === "threeKind" ? 18 : 24;
+      const max = cat.n ? cat.n * 5 : cat.key === "chance" ? 30 : 24;
       const step = cat.n || 1;
+      const freeEntry = !VALID_VALUES[cat.key] && !cat.n; // aktuell nur "Chance" — jede Zahl ist dort gültig
+      const valueDisplay = freeEntry
+        ? `<input type="number" inputmode="numeric" class="stepper__input num" data-action="manual-input" value="${manualValue}" min="0" max="${max}">`
+        : `<span class="stepper__value num">${manualValue}</span>`;
       html += `
         <div class="modal-backdrop" data-action="manual-cancel">
           <div class="modal-sheet" data-action="noop">
             <h3 class="modal-title">${cat.label}</h3>
             <p class="modal-text">${isEdit ? "Wert anpassen oder Eintrag löschen." : "Erzielten Punktewert eintragen."}</p>
             <div class="stepper">
-              <button data-action="manual-dec" data-step="${step}">${ICON.minus}</button>
-              <span class="stepper__value num">${manualValue}</span>
-              <button data-action="manual-inc" data-step="${step}" data-max="${max}">${ICON.plus}</button>
+              <button data-action="manual-dec" data-key="${cat.key}" data-step="${step}">${ICON.minus}</button>
+              ${valueDisplay}
+              <button data-action="manual-inc" data-key="${cat.key}" data-step="${step}" data-max="${max}">${ICON.plus}</button>
             </div>
             <div class="modal-btn-row">
               <button class="modal-btn" data-action="manual-cancel">${ICON.x} Abbrechen</button>
@@ -1132,6 +1652,7 @@ function initEvents() {
       case "set-dice-mode": setDiceMode(el.dataset.mode); return;
       case "start-game": startGame(); return;
       case "toggle-history": toggleHistoryPanel(); return;
+      case "toggle-stats": statsOpen = !statsOpen; render(); return;
       case "clear-history": clearGameHistory(); return;
       case "abort-game": requestAbort(); return;
       case "abort-cancel": resolveAbort(false); return;
@@ -1144,13 +1665,14 @@ function initEvents() {
       case "open-edit": openEdit(Number(el.dataset.player), el.dataset.key); return;
       case "manual-cancel": manualPicker = null; render(); return;
       case "manual-confirm": onManualConfirm(); return;
-      case "manual-inc": manualInc(Number(el.dataset.step), Number(el.dataset.max)); return;
-      case "manual-dec": manualDec(Number(el.dataset.step)); return;
+      case "manual-inc": manualInc(el.dataset.key, Number(el.dataset.step), Number(el.dataset.max)); return;
+      case "manual-dec": manualDec(el.dataset.key, Number(el.dataset.step)); return;
       case "manual-fixed": manualFixedPick(Number(el.dataset.value)); return;
       case "manual-delete": deleteEntry(); return;
       case "zero-cancel": resolveZero(false); return;
       case "zero-confirm": resolveZero(true); return;
       case "new-game": newGame(); return;
+      case "rematch": rematch(); return;
       case "hard-reset":
         try { localStorage.removeItem(STORAGE_KEY_STATE); } catch (e) {}
         location.reload();
@@ -1163,6 +1685,12 @@ function initEvents() {
       const idx = Number(e.target.dataset.pname);
       state.names[idx] = e.target.value;
       saveState(); // bewusst KEIN render() — sonst verliert das Feld den Fokus
+    }
+    if (e.target.matches("input[data-action='manual-input']")) {
+      const max = Number(e.target.max) || 30;
+      const raw = e.target.value.replace(/[^0-9]/g, "");
+      const n = raw === "" ? 0 : Math.min(max, Math.max(0, parseInt(raw, 10)));
+      manualValue = n; // bewusst KEIN render() — sonst verliert das Feld den Fokus
     }
   });
 }
